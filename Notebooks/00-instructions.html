@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1. Introducción" href="01-introduction.html" />
-    <link rel="prev" title="1. Introducción" href="../intro.html" />
+    <link rel="prev" title="Project_Modelos_Lineales" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -144,7 +144,7 @@
     
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -176,8 +176,8 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    1. Introducción
+                <a class="reference internal" href="../README.html">
+                    Project_Modelos_Lineales
                 </a>
             </li>
         </ul>
@@ -433,105 +433,132 @@ document.write(`
 <section id="demostraciones">
 <h2>0.3 Demostraciones<a class="headerlink" href="#demostraciones" title="Link to this heading">#</a></h2>
 <p>Sea un modelo de regresión lineal simple</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 y_i  = \beta_0 + \beta_1 x_i+ \epsilon_i,  \forall i = 1,...,n
-$</p>
+\]</div>
 <p>donde los errores aleatorios cumplen <span class="math notranslate nohighlight">\(E(\epsilon_i) = 0\)</span> y <span class="math notranslate nohighlight">\(VAR(\epsilon_i) = \sigma^2\)</span>,</p>
 <p>Demuestra que la suma de cuadrados de los residuos dividida por <span class="math notranslate nohighlight">\(\sigma^2\)</span>,</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 \frac{SS_{Res}}{\sigma^2} = \frac{\sum e_i^2}{\sigma^2}
-$</p>
+\]</div>
 <p>puede expresarse como una combinación cuadrática de los errores <span class="math notranslate nohighlight">\(\epsilon_i\)</span></p>
 <section id="paso-a-paso">
 <h3>Paso a Paso<a class="headerlink" href="#paso-a-paso" title="Link to this heading">#</a></h3>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 y = X\beta + \epsilon
-$</p>
+\]</div>
 <p>De la predicción OLS, tenemos que:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 \hat{y} = X \beta = X(X'X)^{-1}X'y = Hy
-$</p>
+\]</div>
 <p>donde <span class="math notranslate nohighlight">\(H = X(X'X)^{-1}X'\)</span></p>
-<p>Entonces, tenemos que:</p>
-<p style="text-align:center;">$
+<p>Entonces, tenemos que:
+$<span class="math notranslate nohighlight">\(
 r = y - \hat{y} = (I - H)y
-$</p>
+\)</span>$</p>
 <p>reemplazando y con <span class="math notranslate nohighlight">\(y = X\beta + \epsilon\)</span>:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 r = (I - H)(X\beta + \epsilon) = (I - H)X\beta + (I - H)\epsilon
-$</p><p>Se puede demostrar que <span class="math notranslate nohighlight">\((I-H)X = 0\)</span>, ya que:</p>
-<p style="text-align:center;">$
+\]</div>
+<hr class="docutils" />
+<p>Se puede demostrar que <span class="math notranslate nohighlight">\((I-H)X = 0\)</span>, ya que:</p>
+<div class="math notranslate nohighlight">
+\[
 (I-H)X = IX - HX = X - X = 0
-$</p>
+\]</div>
 <p>ya que:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 HX = X(X'X)^{-1}X'X = X ((X'X)^{-1}(X'X)) = XI = X
-$</p><p>Entonces:</p>
-<p style="text-align:center;">$
+\]</div>
+<hr class="docutils" />
+<p>Entonces:</p>
+<div class="math notranslate nohighlight">
+\[
 r = (I - H)X\beta + (I - H)\epsilon = (I - H)\epsilon
-$</p>
+\]</div>
 <p>También tenemos que:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
 SSE
-&= r'r \\
-&= \epsilon'(I - H)'(I - H)\epsilon
+&amp;= r'r \\
+&amp;= \epsilon'(I - H)'(I - H)\epsilon
 \end{aligned}
-$</p><p>Se puede demostrar que <span class="math notranslate nohighlight">\((I - H)'(I - H) = (I - H)\)</span>:</p>
-<p style="text-align:center;">$
+\end{split}\]</div>
+<hr class="docutils" />
+<p>Se puede demostrar que <span class="math notranslate nohighlight">\((I - H)'(I - H) = (I - H)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
 H^2
-&= X(X'X)^{-1}X'X(X'X)^{-1}X' \\
-&= X((X'X)^{-1}(X'X))(X'X)^{-1}X' \\
-&= XI_p(X'X)^{-1}X' \\
-&= X(X'X)^{-1}X' \\
-&= H \\
+&amp;= X(X'X)^{-1}X'X(X'X)^{-1}X' \\
+&amp;= X((X'X)^{-1}(X'X))(X'X)^{-1}X' \\
+&amp;= XI_p(X'X)^{-1}X' \\
+&amp;= X(X'X)^{-1}X' \\
+&amp;= H \\
 \end{aligned}
-$</p>
+\end{split}\]</div>
 <p>ya que <span class="math notranslate nohighlight">\(((X'X)^{-1}(X'X)) = I\)</span></p>
-<p>Tambien tenemos que:</p>
-<p style="text-align:center;">$
+<p>Tambien tenemos que:
+$<span class="math notranslate nohighlight">\(
 H' = (X(X'X)^{-1}X')' = X(X'X)^{-1}X' = H
-$</p>
-<p>Por tanto,</p>
-<p style="text-align:center;">$
+\)</span>$</p>
+<p>Por tanto,
+$<span class="math notranslate nohighlight">\(
 \begin{aligned}
 (I - H)'(I - H)
-&= (I' - H')(I - H) \\
-&= (I - H)(I - H) \\
-&= I^2 - 2H + H^2 \\
-&= I - 2H + H \\
-&= I - H \\
+&amp;= (I' - H')(I - H) \\
+&amp;= (I - H)(I - H) \\
+&amp;= I^2 - 2H + H^2 \\
+&amp;= I - 2H + H \\
+&amp;= I - H \\
 \end{aligned}
-$</p><p>En base a lo anterior,</p>
-<p style="text-align:center;">$
+\)</span>$</p>
+<hr class="docutils" />
+<p>En base a lo anterior,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
 SSE
-&= \epsilon'(I - H)'(I - H)\epsilon \\
-&= \epsilon'(I - H)\epsilon
+&amp;= \epsilon'(I - H)'(I - H)\epsilon \\
+&amp;= \epsilon'(I - H)\epsilon
 \end{aligned}
-$</p>
+\end{split}\]</div>
 <p>Una combinación cuadratica de las componentes <span class="math notranslate nohighlight">\(\epsilon_i\)</span>.</p>
 <p>Dividiendo entre <span class="math notranslate nohighlight">\(\sigma^2\)</span>:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 \frac{SSE}{\sigma^2} = \frac{1}{\sigma^2} \epsilon'(I - H)\epsilon
-$</p><p>Entonces, si asumimos que <span class="math notranslate nohighlight">\(\epsilon\)</span> es normal, con <span class="math notranslate nohighlight">\(\mu = 0\)</span> y <span class="math notranslate nohighlight">\(Var = \sigma^2\)</span>, y ademàs, dado que H es simétrica e idempotente (como ya ha sido demostrado) tenemos que existe <span class="math notranslate nohighlight">\(Q\)</span> tal que:</p>
-<p style="text-align:center;">$
+\]</div>
+<hr class="docutils" />
+<p>Entonces, si asumimos que <span class="math notranslate nohighlight">\(\epsilon\)</span> es normal, con <span class="math notranslate nohighlight">\(\mu = 0\)</span> y <span class="math notranslate nohighlight">\(Var = \sigma^2\)</span>, y ademàs, dado que H es simétrica e idempotente (como ya ha sido demostrado) tenemos que existe <span class="math notranslate nohighlight">\(Q\)</span> tal que:</p>
+<div class="math notranslate nohighlight">
+\[
 H = Q'\Lambda Q
-$</p>
+\]</div>
 <p>Donde <span class="math notranslate nohighlight">\(\Lambda = diag(1,1,1,...(n-p) veces,1,1,0,0,...p veces...,0,0)\)</span></p>
 <p>por tanto:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 \frac{1}{\sigma^2}\epsilon'(I - H)\epsilon = \frac{1}{\sigma^2}\epsilon'Q\Lambda Q'\epsilon = ( \frac{1}{\sigma}Q'\epsilon)'\Lambda(\frac{1}{\sigma}Q'\epsilon) = z'\Lambda z
-$</p>
+\]</div>
 <p>Dado que Q es ortogonal y <span class="math notranslate nohighlight">\(\epsilon\)</span> es normal, <span class="math notranslate nohighlight">\(z \sim N\)</span>. Entonces:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 z'\Lambda z = \sum^{n-p}_{i=1} z_i^2 \sim \chi^2_{n-p}
-$</p>
+\]</div>
 <p>Por tanto,</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 \frac{SS_{Res}}{\sigma^2} \sim \chi^2_{n-p}
-$</p></section>
+\]</div>
+</section>
 </section>
 </section>
 
@@ -566,12 +593,12 @@ $</p></section>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro.html"
+       href="../README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">1. Introducción</p>
+        <p class="prev-next-title">Project_Modelos_Lineales</p>
       </div>
     </a>
     <a class="right-next"

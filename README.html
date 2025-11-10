@@ -57,9 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="0. Preparación" href="Notebooks/00-instructions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -142,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="#">
   
   
   
@@ -173,15 +176,14 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
-                    1. Introducción
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Project_Modelos_Lineales
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Notebooks/00-instructions.html">0.1 Instalación de módulos</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Notebooks/00-instructions.html">0. Preparación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/01-introduction.html">1. Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/02-data-cleaning.html">2. Descripción y limpieza del dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/03-eda.html">3. Análisis Exploratorio de Datos</a></li>
@@ -190,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/06-diagnostics.html">6. Diagnóstico de supuestos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/07-robust-methods.html">7. Remedios y métodos robustos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/08-validation.html">8. Validación y selección de modelo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Notebooks/09-interpretation.html">Ground Living area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Notebooks/09-interpretation.html">9. Interpretación de Resultados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Notebooks/10-conclusions.html">10. Respuesta a preguntas Iniciales</a></li>
 </ul>
 
@@ -364,7 +366,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -380,6 +384,22 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-compilar-el-jupyter-book">Instrucciones para compilar el Jupyter-book</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-instalacion-de-jupyter-book-y-librerias-a-utilizar">Paso 1: Instalación de Jupyter-book y librerías a utilizar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-inicializar-el-jupyter-book">Paso 2: Inicializar el Jupyter-Book</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-compilar-el-libro">Paso 3: Compilar el libro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-publicar-en-github-pages">Paso 4: Publicar en GitHub Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descargar-datos">Descargar datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-libro">Estructura del libro</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -391,6 +411,61 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="project-modelos-lineales">
 <h1>Project_Modelos_Lineales<a class="headerlink" href="#project-modelos-lineales" title="Link to this heading">#</a></h1>
+<section id="instrucciones-para-compilar-el-jupyter-book">
+<h2>Instrucciones para compilar el Jupyter-book<a class="headerlink" href="#instrucciones-para-compilar-el-jupyter-book" title="Link to this heading">#</a></h2>
+<section id="paso-1-instalacion-de-jupyter-book-y-librerias-a-utilizar">
+<h3>Paso 1: Instalación de Jupyter-book y librerías a utilizar<a class="headerlink" href="#paso-1-instalacion-de-jupyter-book-y-librerias-a-utilizar" title="Link to this heading">#</a></h3>
+<p>Para compilar el libro, es necesario instalar Jupyter-book usando pip. La versión de jupyter-book a usar puede encontrarse en el archivo requirement.txt.</p>
+<p>Puede instalar todos los paquetes requeridos utilizando el siguiente comando en una consola de texto.:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">../requirements.txt</span></code></p>
+</section>
+<section id="paso-2-inicializar-el-jupyter-book">
+<h3>Paso 2: Inicializar el Jupyter-Book<a class="headerlink" href="#paso-2-inicializar-el-jupyter-book" title="Link to this heading">#</a></h3>
+<p>Tras instalar Jupyter-book, inicializar un libro con el comando:</p>
+<p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">create</span> <span class="pre">.</span></code></p>
+<p>Tras lo cual, se debe agregar los capítulos en book/_toc.yml.</p>
+</section>
+<section id="paso-3-compilar-el-libro">
+<h3>Paso 3: Compilar el libro<a class="headerlink" href="#paso-3-compilar-el-libro" title="Link to this heading">#</a></h3>
+<p>Una vez agregado los capítulos, compilar el libro usando el comando:</p>
+<p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code></p>
+<p>Verificar que no haya errores. El resultado estará en _build/html/.</p>
+</section>
+<section id="paso-4-publicar-en-github-pages">
+<h3>Paso 4: Publicar en GitHub Pages<a class="headerlink" href="#paso-4-publicar-en-github-pages" title="Link to this heading">#</a></h3>
+<p>Use el siguiente comando para publicar el libro en GitHub Pages:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html</span></code></p>
+<p>Es necesario tener un repositorio activo en la carpeta del libro. Se creará un nuevo branch con los archivos necesario para la visualización del libro.</p>
+</section>
+</section>
+<section id="descargar-datos">
+<h2>Descargar datos<a class="headerlink" href="#descargar-datos" title="Link to this heading">#</a></h2>
+<p>Puede encontrar los datos del dataset Ames Housing en:</p>
+<p><a class="reference external" href="https://www.kaggle.com/datasets/prevek18/ames-housing-dataset">https://www.kaggle.com/datasets/prevek18/ames-housing-dataset</a></p>
+<p>Adicionalmente, puede descargarlo también usando la API de Kaggle:</p>
+<p><code class="docutils literal notranslate"><span class="pre">kaggle</span> <span class="pre">datasets</span> <span class="pre">download</span> <span class="pre">-d</span> <span class="pre">prevek18/ames-housing-dataset</span></code></p>
+</section>
+<section id="estructura-del-libro">
+<h2>Estructura del libro<a class="headerlink" href="#estructura-del-libro" title="Link to this heading">#</a></h2>
+<p>El libro contiene los siguientes notebooks:</p>
+<p>root: <a class="reference external" href="http://README.md">README.md</a>
+chapters:</p>
+<ul class="simple">
+<li><p>file: Notebooks/00-instructions</p></li>
+<li><p>file: Notebooks/01-introduction</p></li>
+<li><p>file: Notebooks/02-data-cleaning</p></li>
+<li><p>file: Notebooks/03-eda</p></li>
+<li><p>file: Notebooks/04-ols-matrix</p></li>
+<li><p>file: Notebooks/05-inference</p></li>
+<li><p>file: Notebooks/06-diagnostics</p></li>
+<li><p>file: Notebooks/07-robust-methods</p></li>
+<li><p>file: Notebooks/08-validation</p></li>
+<li><p>file: Notebooks/09-interpretation</p></li>
+<li><p>file: Notebooks/10-conclusions</p></li>
+</ul>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -423,12 +498,44 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="right-next"
+       href="Notebooks/00-instructions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">0. Preparación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-para-compilar-el-jupyter-book">Instrucciones para compilar el Jupyter-book</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-instalacion-de-jupyter-book-y-librerias-a-utilizar">Paso 1: Instalación de Jupyter-book y librerías a utilizar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-inicializar-el-jupyter-book">Paso 2: Inicializar el Jupyter-Book</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-compilar-el-libro">Paso 3: Compilar el libro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-publicar-en-github-pages">Paso 4: Publicar en GitHub Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descargar-datos">Descargar datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-libro">Estructura del libro</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -144,7 +144,7 @@
     
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -176,8 +176,8 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    1. Introducción
+                <a class="reference internal" href="../README.html">
+                    Project_Modelos_Lineales
                 </a>
             </li>
         </ul>
@@ -407,7 +407,8 @@ document.write(`
 <section id="explicacion-forma-matricial">
 <h2>4.1 Explicación forma matricial<a class="headerlink" href="#explicacion-forma-matricial" title="Link to this heading">#</a></h2>
 <p>Para la formulación matricial del modelo lineal se expresa de la siguiente manera:</p>
-<p style="text-align:center;">$X\beta + \epsilon= Y$</p>
+<div class="math notranslate nohighlight">
+\[X\beta + \epsilon= Y\]</div>
 <p>Donde:</p>
 <ul class="simple">
 <li><p><strong><span class="math notranslate nohighlight">\(\beta\)</span></strong> es una matriz de coeficientes de tamaño <span class="math notranslate nohighlight">\((p+1)\times1\)</span>, que contiene los coeficientes <span class="math notranslate nohighlight">\(\beta_0, \beta_1,...,\beta_{p}\)</span></p></li>
@@ -415,45 +416,52 @@ document.write(`
 <li><p><strong><span class="math notranslate nohighlight">\(\epsilon\)</span></strong> es una matriz de tamaño <span class="math notranslate nohighlight">\(n \times 1\)</span> que contiene los errores entre la predicción obtenida del modelo lineal y la variable objetivo <strong>Y</strong></p></li>
 <li><p><strong>Y</strong> es una matriz de tamaño <span class="math notranslate nohighlight">\(n \times 1\)</span> las observaciones obtenidas de la variable objetivo.</p></li>
 </ul>
-<p>Recordamos que el objetivo del metodo de mínimos cuadrados es minimizar la función de pérdida, dada por:</p>
-<p style="text-align:center;">$S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})$</p>
+<p>Recordamos que el objetivo del metodo de mínimos cuadrados es minimizar la función de pérdida, dada por:
+$<span class="math notranslate nohighlight">\(S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})\)</span>$</p>
 <p>Para minimar el error, es necesario derivar la expresión anterior, para lo cual la expandimos:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
 S(\boldsymbol{\beta})
-&= (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) \\
-&= \mathbf{y}' \mathbf{y}
+&amp;= (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) \\
+&amp;= \mathbf{y}' \mathbf{y}
    - \mathbf{y}' \mathbf{X}\boldsymbol{\beta}
    - (\mathbf{X}\boldsymbol{\beta})' \mathbf{y}
    + (\mathbf{X}\boldsymbol{\beta})' (\mathbf{X}\boldsymbol{\beta}) \\
-&= \mathbf{y}' \mathbf{y}
+&amp;= \mathbf{y}' \mathbf{y}
    - 2\boldsymbol{\beta}' \mathbf{X}' \mathbf{y}
    + \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta}.
 \end{aligned}
-$</p>
+\end{split}\]</div>
 <p>(Usamos que <span class="math notranslate nohighlight">\((\mathbf{y}^\top\mathbf{X}\boldsymbol{\beta})^\top = \boldsymbol{\beta}^\top\mathbf{X}^\top\mathbf{y}\)</span>, ya que ambos son escalares.)</p>
 <hr class="docutils" />
 <p>Aplicamos las reglas de derivación matricial:</p>
-<p style="text-align:center;">$
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial (\mathbf{y}' \mathbf{y})}{\partial \boldsymbol{\beta}} = 0
-$</p>
-<p style="text-align:center;">$
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial (-2\boldsymbol{\beta}' \mathbf{X}' \mathbf{y})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}' \mathbf{y}
-$</p>
-<p style="text-align:center;">$
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial (\boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = 2\mathbf{X}' \mathbf{X}\boldsymbol{\beta}
-$</p>
-<p>Sumando los términos:</p>
-<p style="text-align:center;">$
+\]</div>
+<p>Sumando los términos:
+$<span class="math notranslate nohighlight">\(
 \nabla_{\boldsymbol{\beta}} S(\boldsymbol{\beta})
 = -2\mathbf{X}' \mathbf{y} + 2\mathbf{X}' \mathbf{X}\boldsymbol{\beta}
 = 2\mathbf{X}'(\mathbf{X}\boldsymbol{\beta} - \mathbf{y})
-$</p>
+\)</span>$</p>
 <hr class="docutils" />
 <p>Para encontrar el valor de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> que minimiza <span class="math notranslate nohighlight">\(S(\boldsymbol{\beta})\)</span>, se iguala la derivada a cero:</p>
-<p style="text-align:center;">$\frac{\partial S(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0$</p>
-<p style="text-align:center;">$\Rightarrow \mathbf{X}'\mathbf{X}\boldsymbol{\beta} = \mathbf{X}'\mathbf{y}$</p>
-<p style="text-align:center;">$\Rightarrow \boxed{\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}}$</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial S(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \mathbf{X}'\mathbf{X}\boldsymbol{\beta} = \mathbf{X}'\mathbf{y}\]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \boxed{\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}}\]</div>
 <p>Esta es la <strong>solución matricial de los Mínimos Cuadrados Ordinarios (OLS)</strong>.</p>
 <p>Ahora bien, para que el determinante de <span class="math notranslate nohighlight">\((X'X)\)</span> sea distinto de 0 y, por tanto, sea invertible, todas las n filas de observaciones deben ser linealmente independientes las unas contras, es decir, no pude existir una combinación lineal tal que al aplicarlas a una de las observaciones se obtenga como resultado otra de las observaciones.</p>
 <p>Expresado en terminos más simples, cada observación debe ser independiente de la otra, y no puede existir correlaciones entre ellas.</p>
@@ -587,6 +595,7 @@ $</p>
 </section>
 <section id="regresion-lineal-matricial">
 <h2>4.2 Regresión lineal matricial<a class="headerlink" href="#regresion-lineal-matricial" title="Link to this heading">#</a></h2>
+<p>Calculamos nuestro vector de coeficientes usando la forma matricial:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encontramos B usando la forma matricial</span>
@@ -639,7 +648,7 @@ $</p>
 </div>
 </div>
 </div>
-<p>Como se puede observar, los parametros obtenidos coinciden exactamente con los obtenidos usando la forma matricial.</p>
+<p>Como se puede observar, los parametros obtenidos coinciden exactamente con los obtenidos usando la forma matricial. Finalmente, guardamos los parámetros de nuestro modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_1</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;../Data/X.dat&#39;</span><span class="p">)</span>

@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/08-validation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Ground Living area" href="09-interpretation.html" />
+    <link rel="next" title="9. Interpretación de Resultados" href="09-interpretation.html" />
     <link rel="prev" title="7. Remedios y métodos robustos" href="07-robust-methods.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -144,7 +144,7 @@
     
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -176,14 +176,13 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    1. Introducción
+                <a class="reference internal" href="../README.html">
+                    Project_Modelos_Lineales
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0.1 Instalación de módulos</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0. Preparación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-data-cleaning.html">2. Descripción y limpieza del dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-eda.html">3. Análisis Exploratorio de Datos</a></li>
@@ -192,7 +191,7 @@
 <li class="toctree-l1"><a class="reference internal" href="06-diagnostics.html">6. Diagnóstico de supuestos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-robust-methods.html">7. Remedios y métodos robustos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Validación y selección de modelo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">Ground Living area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">9. Interpretación de Resultados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10-conclusions.html">10. Respuesta a preguntas Iniciales</a></li>
 </ul>
 
@@ -457,9 +456,10 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> es una herramienta del módulo <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code> que estandariza las variables numéricas,<br />
 es decir, transforma los datos para que tengan media 0 y desviación estándar 1.</p>
 <p>Matemáticamente, cada valor <span class="math notranslate nohighlight">\( x_i \)</span> se transforma así:</p>
-<p><span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 z_i = \frac{x_i - \mu}{\sigma}
-\)</span></p>
+\]</div>
 <p>donde:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( \mu \)</span>: media de la variable original</p></li>
@@ -517,9 +517,10 @@ z_i = \frac{x_i - \mu}{\sigma}
 <ul class="simple">
 <li><p><strong>Coeficiente de determinación (R²)</strong>: Indica que proporción de la variabilidad total es explicada por el modelo.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
-\)</span></p>
+\]</div>
 <p>donde:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( SS_{res} = \sum (y_i - \hat{y}_i)^2 \)</span> → <strong>Suma de errores cuadráticos (residuales)</strong></p></li>
@@ -531,15 +532,17 @@ R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
 <ul class="simple">
 <li><p><strong>Error cuadrático medio (MSE — Mean Squared Error)</strong>: Suma de los errores cuadráticos estandarizados con los grados de libertad de los residuos.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 MSE = \frac{1}{n-(p+1)} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-\)</span></p>
+\]</div>
 <ul class="simple">
 <li><p><strong>Error absoluto medio (MAE — Mean Absolute Error)</strong>: Suma de los errores absolutos estandarizados con los grados de libertad de los residuos.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 MAE = \frac{1}{n-(p+1)} \sum_{i=1}^{n} |y_i - \hat{y}_i|
-\)</span></p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluar_modelo</span><span class="p">(</span><span class="n">modelo</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
@@ -782,9 +785,10 @@ MAE = \frac{1}{n-(p+1)} \sum_{i=1}^{n} |y_i - \hat{y}_i|
 <section id="regresion-ridge">
 <h3>8.3.2 Regresión Ridge<a class="headerlink" href="#regresion-ridge" title="Link to this heading">#</a></h3>
 <p>Modificación a OLS, añadiendo un factor de regularización, el cual penaliza coeficientes grandes, lo que permite estabilizar el modelo y trabajar con modelos más complejos al tiempo que se reduce el Overfitting. De esta forma, la función de perdida de Ridge es la siguiente:</p>
-<p><span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 \min_{\beta} \; \sum_{i=1}^{n} (y_i - X_i \beta)^2 + \lambda \sum_{j=1}^{p} \beta_j^2
-\)</span></p>
+\]</div>
 <p>Donde:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( \lambda \)</span> (lambda) es el parametro de regularización ≥ 0</p></li>
@@ -1651,9 +1655,10 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="regresion-lasso">
 <h3>8.3.3 Regresión Lasso<a class="headerlink" href="#regresion-lasso" title="Link to this heading">#</a></h3>
 <p>La regresión Lasso es similar a la regresión Ridge, con la diferencia que usa una penalización L1, es decir, el valor absoluto de los coeficientes multiplicado por un factor <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 \min_{\beta} \left( \sum_{i=1}^{n} (y_i - X_i \beta)^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right)
-\)</span></p>
+\]</div>
 <p>Esto provoca un efecto similar al de Ridge, con la diferencia que con Lasso, los coeficientes con menos peso tenderán a 0 e incluso podrían anularse. De hecho, un lambda tendiente a infinito hará todos los coeficientes iguales a 0, lo que nulificaría el modelo. Esto le da a Lasso una característica de selección de variables, donde aquellas variables que son llevadas a 0 pueden ser descartadas del modelo.</p>
 <p>Útil para hacer limpieza de atributos.</p>
 <p>Procedemos a iterar de la misma forma que hicimos con Ridge, para hallar nuestro mejor lambda y entrenar nuestro modelo.</p>
@@ -2844,7 +2849,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ground Living area</p>
+        <p class="prev-next-title">9. Interpretación de Resultados</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -144,7 +144,7 @@
     
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -176,8 +176,8 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    1. Introducción
+                <a class="reference internal" href="../README.html">
+                    Project_Modelos_Lineales
                 </a>
             </li>
         </ul>
@@ -396,10 +396,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grlivarea-vs-saleprice">3.4 GrLivArea vs SalePrice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-de-coeficiente-de-correlacion">3.5 HeatMap de coeficiente de correlación</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-frac-sum-i-1-n-x-i-bar-x-y-i-bar-y-sqrt-sum-i-1-n-x-i-bar-x-2-sqrt-sum-i-1-n-y-i-bar-y-2"><p style="text-align:center;"><span class="math notranslate nohighlight">\(r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2} \, \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2}}\)</span></p></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-de-coeficiente-de-correlacion">3.5 HeatMap de coeficiente de correlación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-contra-neighborhood-y-overallqual">3.6 Comparación contra Neighborhood y OverallQual</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-variables">3.7 Selección de variables</a></li>
 </ul>
@@ -541,8 +538,8 @@ document.write(`
 <section id="heatmap-de-coeficiente-de-correlacion">
 <h2>3.5 HeatMap de coeficiente de correlación<a class="headerlink" href="#heatmap-de-coeficiente-de-correlacion" title="Link to this heading">#</a></h2>
 <p>Esa correlación observada en el scatter plot se puede calcular matemáticamente mediante el coeficiente de correlación, el cuál es calculado de la siguiente forma:</p>
-<section id="r-frac-sum-i-1-n-x-i-bar-x-y-i-bar-y-sqrt-sum-i-1-n-x-i-bar-x-2-sqrt-sum-i-1-n-y-i-bar-y-2">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2} \, \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2}}\)</span></p><a class="headerlink" href="#r-frac-sum-i-1-n-x-i-bar-x-y-i-bar-y-sqrt-sum-i-1-n-x-i-bar-x-2-sqrt-sum-i-1-n-y-i-bar-y-2" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2} \, \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2}}\]</div>
 <p>Donde:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(( x_i, y_i )\)</span>: valores individuales de cada variable</p></li>
@@ -637,7 +634,6 @@ Name: SalePrice, dtype: float64
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="comparacion-contra-neighborhood-y-overallqual">
 <h2>3.6 Comparación contra Neighborhood y OverallQual<a class="headerlink" href="#comparacion-contra-neighborhood-y-overallqual" title="Link to this heading">#</a></h2>
@@ -877,10 +873,7 @@ Name: SalePrice, dtype: float64
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grlivarea-vs-saleprice">3.4 GrLivArea vs SalePrice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-de-coeficiente-de-correlacion">3.5 HeatMap de coeficiente de correlación</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-frac-sum-i-1-n-x-i-bar-x-y-i-bar-y-sqrt-sum-i-1-n-x-i-bar-x-2-sqrt-sum-i-1-n-y-i-bar-y-2"><p style="text-align:center;"><span class="math notranslate nohighlight">\(r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2} \, \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2}}\)</span></p></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap-de-coeficiente-de-correlacion">3.5 HeatMap de coeficiente de correlación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-contra-neighborhood-y-overallqual">3.6 Comparación contra Neighborhood y OverallQual</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-variables">3.7 Selección de variables</a></li>
 </ul>

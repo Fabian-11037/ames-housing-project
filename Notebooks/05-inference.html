@@ -144,7 +144,7 @@
     
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -176,8 +176,8 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    1. Introducción
+                <a class="reference internal" href="../README.html">
+                    Project_Modelos_Lineales
                 </a>
             </li>
         </ul>
@@ -470,7 +470,9 @@ document.write(`
 <section id="calculo-de-grados-de-libertad">
 <h2>5.1 Calculo de grados de libertad<a class="headerlink" href="#calculo-de-grados-de-libertad" title="Link to this heading">#</a></h2>
 <p>Los grados de libertad de modelo corresponden a número de coeficientes B estimados, asociados a variables regresoras. Es decir, es calculado como:</p>
-<p style="text-align:center;">$Df_{Model} = m - 1 = k$</p><div class="cell docutils container">
+<div class="math notranslate nohighlight">
+\[Df_{Model} = m - 1 = k\]</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Df_Model</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -497,7 +499,9 @@ document.write(`
 </div>
 </div>
 <p>Por su parte, los grados de libertad de los residuos corresponden al número de observaciones n menos el total de coeficientes estimados:</p>
-<p style="text-align:center;">$Df_{Residuals} = n - m = n - (k + 1)$</p><div class="cell docutils container">
+<div class="math notranslate nohighlight">
+\[Df_{Residuals} = n - m = n - (k + 1)\]</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Df_Residuals</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 
@@ -524,11 +528,16 @@ document.write(`
 </div>
 </div>
 <p>Comparando con los grados de libertad total, que se calcula como n - 1, por la perdida de un grado de libertad por la estimación de <span class="math notranslate nohighlight">\(\overline{Y}\)</span>:</p>
-<p style="text-align:center;">$Df_{Total} = n - 1$</p>
+<div class="math notranslate nohighlight">
+\[Df_{Total} = n - 1\]</div>
 <p>Por lo que se cumple que:</p>
-<p style="text-align:center;">$Df_{Total} = n - 1 - k + k$</p>
-<p style="text-align:center;">$Df_{Total} = n - (k + 1) + k$</p>
-<p style="text-align:center;">$Df_{Total} = Df_{Residuals} + Df_{Model}$</p><div class="cell docutils container">
+<div class="math notranslate nohighlight">
+\[Df_{Total} = n - 1 - k + k\]</div>
+<div class="math notranslate nohighlight">
+\[Df_{Total} = n - (k + 1) + k\]</div>
+<div class="math notranslate nohighlight">
+\[Df_{Total} = Df_{Residuals} + Df_{Model}\]</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Df_Total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -558,7 +567,9 @@ document.write(`
 <section id="calculo-de-error-estandar">
 <h2>5.2 Calculo de error estandar<a class="headerlink" href="#calculo-de-error-estandar" title="Link to this heading">#</a></h2>
 <p>Para calcular el error estándar de cada coeficiente, primero calculamos el error medio cuadrático, usando la expresión:</p>
-<p style="text-align:center;">$MSE = \sum \frac{(\hat{y} - y)^2}{df_{residuals}}$</p><div class="cell docutils container">
+<div class="math notranslate nohighlight">
+\[MSE = \sum \frac{(\hat{y} - y)^2}{df_{residuals}}\]</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y_pred</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span>
 
@@ -575,7 +586,8 @@ document.write(`
 </div>
 </div>
 <p>Luego, se obtiene la matriz de covarianza de los estimadores calculada como:</p>
-<p style="text-align:center;">$COV = (X^T X)$</p>
+<div class="math notranslate nohighlight">
+\[COV = (X^T X)\]</div>
 <p>De esta matriz, nos interesa los valores que están en la diagonal central, los cuales corresponderán a la covarianza de los estimadores, incluyendo <span class="math notranslate nohighlight">\(B_0\)</span>.</p>
 <p>Además, dado que para calcular el error estandar es necesario dividir el error cuadratico medio sobre los valores de la covarianza, es necesario sacar su inversa. De esta manera calculamos el error estandar como:</p>
 <div class="cell docutils container">
@@ -602,11 +614,12 @@ document.write(`
 <section id="testeo-de-hipotesis-y-p-valor">
 <h2>5.3 Testeo de hipótesis y p-valor<a class="headerlink" href="#testeo-de-hipotesis-y-p-valor" title="Link to this heading">#</a></h2>
 <p>Con el error estándar podemos obtener un estadístico t, que nos ayude a validar la hipotesis de significancia del modelo, donde:</p>
-<p style="text-align:center;">$H_0: B_i = 0, \forall i > 0$</p> <p style="text-align:center;">$H_1: B_i \ne 0, \forall i > 0$</p>
-<p>Se entiende que si no se puede rechazar la hipotesis nula que el coeficiente asociado a un atributo <span class="math notranslate nohighlight">\(X_i\)</span> es igual a 0, entonces ese atributo no tiene una significancia verdadera en el modelo, por lo cual puede ser descartado. El estadistico t asociado será igual a:</p>
-<p style="text-align:center;">$t_i = \frac{B_i}{se_i}, \forall i > 0$</p>
-<p>Y el p valor será igual a:</p>
-<p style="text-align:center;">$p_i = 2 * P(t>|t_i|), \forall i > 0$</p>
+<div class="math notranslate nohighlight">
+\[H_0: B_i = 0, \forall i &gt; 0$&lt;/p&gt; &lt;p style=&quot;text-align:center;&quot;&gt;$H_1: B_i \ne 0, \forall i &gt; 0\]</div>
+<p>Se entiende que si no se puede rechazar la hipotesis nula que el coeficiente asociado a un atributo <span class="math notranslate nohighlight">\(X_i\)</span> es igual a 0, entonces ese atributo no tiene una significancia verdadera en el modelo, por lo cual puede ser descartado. El estadistico t asociado será igual a:
+$<span class="math notranslate nohighlight">\(t_i = \frac{B_i}{se_i}, \forall i &gt; 0\)</span>$</p>
+<p>Y el p valor será igual a:
+$<span class="math notranslate nohighlight">\(p_i = 2 * P(t&gt;|t_i|), \forall i &gt; 0\)</span>$</p>
 <p>Una hipótesis similar se puede realizar para el intercepto <span class="math notranslate nohighlight">\(B_0\)</span>, donde se evalúa la hipótesis de que el modelo pase por el origen, es decir, <span class="math notranslate nohighlight">\(Y=0\)</span> para <span class="math notranslate nohighlight">\(X = 0\)</span>.</p>
 </section>
 <section id="tabla-de-coeficientes">
@@ -1053,6 +1066,8 @@ document.write(`
 </tr>
 </table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 5.65e+05. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div></div>
 </div>
+<hr class="docutils" />
+<p>Tras la obtención de nuestro modelo, procedemos a guardarlo para uso futuro.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_1</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s1">&#39;../Data/X_def.dat&#39;</span><span class="p">)</span>
