@@ -1,0 +1,2295 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Descripción y limpieza del dataset &#8212; Ames Housing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/02-data-cleaning';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Análisis Exploratorio de Datos" href="03-eda.html" />
+    <link rel="prev" title="1. Introducción" href="01-introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Ames Housing - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Ames Housing - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    1. Introducción
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0.1 Instalación de módulos</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introducción</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Descripción y limpieza del dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-eda.html">3. Análisis Exploratorio de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-ols-matrix.html">4. Formulación matricial del modelo OLS (Mínimos cuadrados)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-inference.html">5. Inferencia y grados de libertad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-diagnostics.html">6. Diagnóstico de supuestos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-robust-methods.html">7. Remedios y métodos robustos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-validation.html">8. Validación y selección de modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">Ground Living area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-conclusions.html">10. Respuesta a preguntas Iniciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Fabian-11037/ames-housing-project/tree/main" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Fabian-11037/ames-housing-project/tree/main/issues/new?title=Issue%20on%20page%20%2FNotebooks/02-data-cleaning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Notebooks/02-data-cleaning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2. Descripción y limpieza del dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-modulos-de-python-a-usar">2.1 Importación de modulos de Python a usar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-dataset">2.2 Lectura del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-y-analisis-inicial-del-dataset">2.3 Descripción y analisis inicial del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-dataset">2.4 Limpieza del dataset</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="descripcion-y-limpieza-del-dataset">
+<h1>2. Descripción y limpieza del dataset<a class="headerlink" href="#descripcion-y-limpieza-del-dataset" title="Link to this heading">#</a></h1>
+<section id="importacion-de-modulos-de-python-a-usar">
+<h2>2.1 Importación de modulos de Python a usar<a class="headerlink" href="#importacion-de-modulos-de-python-a-usar" title="Link to this heading">#</a></h2>
+<p>Durante este capítulo se usarán los siguientes módulos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lectura-del-dataset">
+<h2>2.2 Lectura del dataset<a class="headerlink" href="#lectura-del-dataset" title="Link to this heading">#</a></h2>
+<p>Se usa pandas para leer el dataset y almacenarlo en un objeto DataFrame que nos permita su manipulación con más facilidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../Data/AmesHousing.csv&#39;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adicionalmente, establecemos un random state para utilizar en caso de hacer muestreos aleatorios.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="descripcion-y-analisis-inicial-del-dataset">
+<h2>2.3 Descripción y analisis inicial del dataset<a class="headerlink" href="#descripcion-y-analisis-inicial-del-dataset" title="Link to this heading">#</a></h2>
+<p>Usamos <a class="reference external" href="http://DataFrame.info">DataFrame.info</a>() y DataFrame.describe() para obtener una idea inicial del contenido del dataset</p>
+<p>De info obtenemos información básica del dataset por cada columna, tal como tipo (numerico o categorico, conocida en pandas como object), nombre de cada columna y numero de datos no nulos.</p>
+<p>Tambien obtenemos información global. Observamos que en total tenemos 82 columnas y 2930 entradas, que componen nuestro dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 2930 entries, 0 to 2929
+Data columns (total 82 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   Order            2930 non-null   int64  
+ 1   PID              2930 non-null   int64  
+ 2   MS SubClass      2930 non-null   int64  
+ 3   MS Zoning        2930 non-null   object 
+ 4   Lot Frontage     2440 non-null   float64
+ 5   Lot Area         2930 non-null   int64  
+ 6   Street           2930 non-null   object 
+ 7   Alley            198 non-null    object 
+ 8   Lot Shape        2930 non-null   object 
+ 9   Land Contour     2930 non-null   object 
+ 10  Utilities        2930 non-null   object 
+ 11  Lot Config       2930 non-null   object 
+ 12  Land Slope       2930 non-null   object 
+ 13  Neighborhood     2930 non-null   object 
+ 14  Condition 1      2930 non-null   object 
+ 15  Condition 2      2930 non-null   object 
+ 16  Bldg Type        2930 non-null   object 
+ 17  House Style      2930 non-null   object 
+ 18  Overall Qual     2930 non-null   int64  
+ 19  Overall Cond     2930 non-null   int64  
+ 20  Year Built       2930 non-null   int64  
+ 21  Year Remod/Add   2930 non-null   int64  
+ 22  Roof Style       2930 non-null   object 
+ 23  Roof Matl        2930 non-null   object 
+ 24  Exterior 1st     2930 non-null   object 
+ 25  Exterior 2nd     2930 non-null   object 
+ 26  Mas Vnr Type     1155 non-null   object 
+ 27  Mas Vnr Area     2907 non-null   float64
+ 28  Exter Qual       2930 non-null   object 
+ 29  Exter Cond       2930 non-null   object 
+ 30  Foundation       2930 non-null   object 
+ 31  Bsmt Qual        2850 non-null   object 
+ 32  Bsmt Cond        2850 non-null   object 
+ 33  Bsmt Exposure    2847 non-null   object 
+ 34  BsmtFin Type 1   2850 non-null   object 
+ 35  BsmtFin SF 1     2929 non-null   float64
+ 36  BsmtFin Type 2   2849 non-null   object 
+ 37  BsmtFin SF 2     2929 non-null   float64
+ 38  Bsmt Unf SF      2929 non-null   float64
+ 39  Total Bsmt SF    2929 non-null   float64
+ 40  Heating          2930 non-null   object 
+ 41  Heating QC       2930 non-null   object 
+ 42  Central Air      2930 non-null   object 
+ 43  Electrical       2929 non-null   object 
+ 44  1st Flr SF       2930 non-null   int64  
+ 45  2nd Flr SF       2930 non-null   int64  
+ 46  Low Qual Fin SF  2930 non-null   int64  
+ 47  Gr Liv Area      2930 non-null   int64  
+ 48  Bsmt Full Bath   2928 non-null   float64
+ 49  Bsmt Half Bath   2928 non-null   float64
+ 50  Full Bath        2930 non-null   int64  
+ 51  Half Bath        2930 non-null   int64  
+ 52  Bedroom AbvGr    2930 non-null   int64  
+ 53  Kitchen AbvGr    2930 non-null   int64  
+ 54  Kitchen Qual     2930 non-null   object 
+ 55  TotRms AbvGrd    2930 non-null   int64  
+ 56  Functional       2930 non-null   object 
+ 57  Fireplaces       2930 non-null   int64  
+ 58  Fireplace Qu     1508 non-null   object 
+ 59  Garage Type      2773 non-null   object 
+ 60  Garage Yr Blt    2771 non-null   float64
+ 61  Garage Finish    2771 non-null   object 
+ 62  Garage Cars      2929 non-null   float64
+ 63  Garage Area      2929 non-null   float64
+ 64  Garage Qual      2771 non-null   object 
+ 65  Garage Cond      2771 non-null   object 
+ 66  Paved Drive      2930 non-null   object 
+ 67  Wood Deck SF     2930 non-null   int64  
+ 68  Open Porch SF    2930 non-null   int64  
+ 69  Enclosed Porch   2930 non-null   int64  
+ 70  3Ssn Porch       2930 non-null   int64  
+ 71  Screen Porch     2930 non-null   int64  
+ 72  Pool Area        2930 non-null   int64  
+ 73  Pool QC          13 non-null     object 
+ 74  Fence            572 non-null    object 
+ 75  Misc Feature     106 non-null    object 
+ 76  Misc Val         2930 non-null   int64  
+ 77  Mo Sold          2930 non-null   int64  
+ 78  Yr Sold          2930 non-null   int64  
+ 79  Sale Type        2930 non-null   object 
+ 80  Sale Condition   2930 non-null   object 
+ 81  SalePrice        2930 non-null   int64  
+dtypes: float64(11), int64(28), object(43)
+memory usage: 1.8+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>De ‘Describe()’ podemos obtener información estadistica de cada columna numerica, como cantidad (sin incluir nulos), promedio, desviación estándar, minimo, máximo y cuartiles.</p>
+<p>Vemos que hay columnas que tienen información no relevante, como la columna order, la cual al tener un mínimo de 1 y un máximo de 2930, indica que es una columna de indice.</p>
+<p>En nuestra columna objetivo, SalePrice, observamos un promedio de precio de venta de 180mil, con una desviación estandar de casi 80mil. El 50% de los valores están por debajo de los 160mil.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Order</th>
+      <th>PID</th>
+      <th>MS SubClass</th>
+      <th>Lot Frontage</th>
+      <th>Lot Area</th>
+      <th>Overall Qual</th>
+      <th>Overall Cond</th>
+      <th>Year Built</th>
+      <th>Year Remod/Add</th>
+      <th>Mas Vnr Area</th>
+      <th>...</th>
+      <th>Wood Deck SF</th>
+      <th>Open Porch SF</th>
+      <th>Enclosed Porch</th>
+      <th>3Ssn Porch</th>
+      <th>Screen Porch</th>
+      <th>Pool Area</th>
+      <th>Misc Val</th>
+      <th>Mo Sold</th>
+      <th>Yr Sold</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2930.00000</td>
+      <td>2.930000e+03</td>
+      <td>2930.000000</td>
+      <td>2440.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2907.000000</td>
+      <td>...</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1465.50000</td>
+      <td>7.144645e+08</td>
+      <td>57.387372</td>
+      <td>69.224590</td>
+      <td>10147.921843</td>
+      <td>6.094881</td>
+      <td>5.563140</td>
+      <td>1971.356314</td>
+      <td>1984.266553</td>
+      <td>101.896801</td>
+      <td>...</td>
+      <td>93.751877</td>
+      <td>47.533447</td>
+      <td>23.011604</td>
+      <td>2.592491</td>
+      <td>16.002048</td>
+      <td>2.243345</td>
+      <td>50.635154</td>
+      <td>6.216041</td>
+      <td>2007.790444</td>
+      <td>180796.060068</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>845.96247</td>
+      <td>1.887308e+08</td>
+      <td>42.638025</td>
+      <td>23.365335</td>
+      <td>7880.017759</td>
+      <td>1.411026</td>
+      <td>1.111537</td>
+      <td>30.245361</td>
+      <td>20.860286</td>
+      <td>179.112611</td>
+      <td>...</td>
+      <td>126.361562</td>
+      <td>67.483400</td>
+      <td>64.139059</td>
+      <td>25.141331</td>
+      <td>56.087370</td>
+      <td>35.597181</td>
+      <td>566.344288</td>
+      <td>2.714492</td>
+      <td>1.316613</td>
+      <td>79886.692357</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.00000</td>
+      <td>5.263011e+08</td>
+      <td>20.000000</td>
+      <td>21.000000</td>
+      <td>1300.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1872.000000</td>
+      <td>1950.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>2006.000000</td>
+      <td>12789.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>733.25000</td>
+      <td>5.284770e+08</td>
+      <td>20.000000</td>
+      <td>58.000000</td>
+      <td>7440.250000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>1954.000000</td>
+      <td>1965.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.000000</td>
+      <td>2007.000000</td>
+      <td>129500.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1465.50000</td>
+      <td>5.354536e+08</td>
+      <td>50.000000</td>
+      <td>68.000000</td>
+      <td>9436.500000</td>
+      <td>6.000000</td>
+      <td>5.000000</td>
+      <td>1973.000000</td>
+      <td>1993.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>27.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+      <td>2008.000000</td>
+      <td>160000.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2197.75000</td>
+      <td>9.071811e+08</td>
+      <td>70.000000</td>
+      <td>80.000000</td>
+      <td>11555.250000</td>
+      <td>7.000000</td>
+      <td>6.000000</td>
+      <td>2001.000000</td>
+      <td>2004.000000</td>
+      <td>164.000000</td>
+      <td>...</td>
+      <td>168.000000</td>
+      <td>70.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>8.000000</td>
+      <td>2009.000000</td>
+      <td>213500.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2930.00000</td>
+      <td>1.007100e+09</td>
+      <td>190.000000</td>
+      <td>313.000000</td>
+      <td>215245.000000</td>
+      <td>10.000000</td>
+      <td>9.000000</td>
+      <td>2010.000000</td>
+      <td>2010.000000</td>
+      <td>1600.000000</td>
+      <td>...</td>
+      <td>1424.000000</td>
+      <td>742.000000</td>
+      <td>1012.000000</td>
+      <td>508.000000</td>
+      <td>576.000000</td>
+      <td>800.000000</td>
+      <td>17000.000000</td>
+      <td>12.000000</td>
+      <td>2010.000000</td>
+      <td>755000.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 39 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()[</span><span class="s1">&#39;Gr Liv Area&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    2930.000000
+mean     1499.690444
+std       505.508887
+min       334.000000
+25%      1126.000000
+50%      1442.000000
+75%      1742.750000
+max      5642.000000
+Name: Gr Liv Area, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count      2930.000000
+mean     180796.060068
+std       79886.692357
+min       12789.000000
+25%      129500.000000
+50%      160000.000000
+75%      213500.000000
+max      755000.000000
+Name: SalePrice, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>También imprimimos en pantalla las primeras 10 filas para obtener una idea visual del contenido del dataframe</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Order</th>
+      <th>PID</th>
+      <th>MS SubClass</th>
+      <th>MS Zoning</th>
+      <th>Lot Frontage</th>
+      <th>Lot Area</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>Lot Shape</th>
+      <th>Land Contour</th>
+      <th>...</th>
+      <th>Pool Area</th>
+      <th>Pool QC</th>
+      <th>Fence</th>
+      <th>Misc Feature</th>
+      <th>Misc Val</th>
+      <th>Mo Sold</th>
+      <th>Yr Sold</th>
+      <th>Sale Type</th>
+      <th>Sale Condition</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>526301100</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>141.0</td>
+      <td>31770</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>215000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>526350040</td>
+      <td>20</td>
+      <td>RH</td>
+      <td>80.0</td>
+      <td>11622</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>105000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>526351010</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>81.0</td>
+      <td>14267</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Gar2</td>
+      <td>12500</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>172000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>526353030</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>93.0</td>
+      <td>11160</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>4</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>244000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>527105010</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>74.0</td>
+      <td>13830</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>189900</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>527105030</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>78.0</td>
+      <td>9978</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>195500</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>527127150</td>
+      <td>120</td>
+      <td>RL</td>
+      <td>41.0</td>
+      <td>4920</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>4</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>213500</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>527145080</td>
+      <td>120</td>
+      <td>RL</td>
+      <td>43.0</td>
+      <td>5005</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>HLS</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>191500</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>527146030</td>
+      <td>120</td>
+      <td>RL</td>
+      <td>39.0</td>
+      <td>5389</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>236500</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>527162130</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>60.0</td>
+      <td>7500</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>189000</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 82 columns</p>
+</div></div></div>
+</div>
+<p>Confirmamos nuestra teoría respecto a Order, que parece ser una columna indice, por lo cual la colocamos como indice de nuestro dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="limpieza-del-dataset">
+<h2>2.4 Limpieza del dataset<a class="headerlink" href="#limpieza-del-dataset" title="Link to this heading">#</a></h2>
+<p>Para la limpieza del dataset, se realizan las siguientes transformaciones:</p>
+<p><strong>1. Limpieza de valores nulos</strong>
+Esta limpieza se realiza de acuerdo al tipo de dato:</p>
+<ul class="simple">
+<li><p>Dato numéricos: Se reemplazan los nulos con la mediana</p></li>
+<li><p>Datos categoricos: Se reemplaza por una nueva categoría ‘No Aplica’, debido a que variables como alley, fence, etc. parece indicar que se usa nan para el caso que no se encuentre el objeto por la categoría en la casa, por ejemplo, la casa no tiene cerca.</p></li>
+</ul>
+<p><strong>2. Transformación logarítmica</strong>
+Aplicamos np.log1p(x) (log(1+x)) a las columnas numéricas que cumplan la siguiente condición: Todos los valores sean no negativos, y cuyo coeficiente de asimetría (skewness) sea mayor a 1 o menor que -1 (alta asimetría).</p>
+<p><strong>3. Tratamiento de variables categoricas</strong>
+Aplicamos one-hot-encoding a las variables categoricas, creando tantas columnas con valores 0 y 1, de acuerdo a si aplica o no, para cada categoría. Finalmente, unimos reemplamos las columnas creadas por las originales en el dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =============================</span>
+<span class="c1"># 1. Limpieza de valores nulos</span>
+<span class="c1"># =============================</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">]:</span>
+        <span class="c1"># Reemplazar nulos numéricos con la mediana</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Reemplazar nulos categóricos con &#39;Sin categoria&#39;</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;Sin categoria&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores nulos restantes:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># =============================</span>
+<span class="c1"># 2. Transformación logarítmica</span>
+<span class="c1"># =============================</span>
+<span class="c1"># Calcular skewness para decidir qué variables transformar</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="n">skewed</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">skew</span><span class="p">())</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">skewed_features</span> <span class="o">=</span> <span class="n">skewed</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">skewed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Variables con alta asimetría (|skew| &gt; 1): </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">skewed_features</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Aplicar log(1+x) solo a variables no negativas</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">skewed_features</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transformación logarítmica aplicada a variables numéricas sesgadas.&quot;</span><span class="p">)</span>
+
+<span class="c1"># =============================</span>
+<span class="c1"># 3. Codificación de variables categóricas</span>
+<span class="c1"># =============================</span>
+<span class="n">cat_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">])</span>
+
+<span class="n">encoded_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">encoded</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">cat_cols</span><span class="p">))</span>
+
+<span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">encoded_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Forma final del dataset:&quot;</span><span class="p">,</span> <span class="n">df_final</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset limpio, sin nulos, sin outliers, con transformación log y codificación categórica.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valores nulos restantes: 0
+
+Variables con alta asimetría (|skew| &gt; 1): [&#39;Misc Val&#39;, &#39;Pool Area&#39;, &#39;Lot Area&#39;, &#39;Low Qual Fin SF&#39;, &#39;3Ssn Porch&#39;, &#39;Kitchen AbvGr&#39;, &#39;BsmtFin SF 2&#39;, &#39;Enclosed Porch&#39;, &#39;Screen Porch&#39;, &#39;Bsmt Half Bath&#39;, &#39;Mas Vnr Area&#39;, &#39;Open Porch SF&#39;, &#39;Wood Deck SF&#39;, &#39;SalePrice&#39;, &#39;Lot Frontage&#39;, &#39;1st Flr SF&#39;, &#39;BsmtFin SF 1&#39;, &#39;MS SubClass&#39;, &#39;Gr Liv Area&#39;, &#39;Total Bsmt SF&#39;]
+Transformación logarítmica aplicada a variables numéricas sesgadas.
+
+Forma final del dataset: (2930, 321)
+Dataset limpio, sin nulos, sin outliers, con transformación log y codificación categórica.
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Finalmente nos queda el siguiente dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PID</th>
+      <th>MS SubClass</th>
+      <th>Lot Frontage</th>
+      <th>Lot Area</th>
+      <th>Overall Qual</th>
+      <th>Overall Cond</th>
+      <th>Year Built</th>
+      <th>Year Remod/Add</th>
+      <th>Mas Vnr Area</th>
+      <th>BsmtFin SF 1</th>
+      <th>...</th>
+      <th>Sale Type_New</th>
+      <th>Sale Type_Oth</th>
+      <th>Sale Type_VWD</th>
+      <th>Sale Type_WD</th>
+      <th>Sale Condition_Abnorml</th>
+      <th>Sale Condition_AdjLand</th>
+      <th>Sale Condition_Alloca</th>
+      <th>Sale Condition_Family</th>
+      <th>Sale Condition_Normal</th>
+      <th>Sale Condition_Partial</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>526301100</td>
+      <td>3.044522</td>
+      <td>4.955827</td>
+      <td>10.366309</td>
+      <td>6</td>
+      <td>5</td>
+      <td>1960</td>
+      <td>1960</td>
+      <td>4.727388</td>
+      <td>6.461468</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>526350040</td>
+      <td>3.044522</td>
+      <td>4.394449</td>
+      <td>9.360741</td>
+      <td>5</td>
+      <td>6</td>
+      <td>1961</td>
+      <td>1961</td>
+      <td>0.000000</td>
+      <td>6.150603</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>526351010</td>
+      <td>3.044522</td>
+      <td>4.406719</td>
+      <td>9.565775</td>
+      <td>6</td>
+      <td>6</td>
+      <td>1958</td>
+      <td>1958</td>
+      <td>4.691348</td>
+      <td>6.828712</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>526353030</td>
+      <td>3.044522</td>
+      <td>4.543295</td>
+      <td>9.320181</td>
+      <td>7</td>
+      <td>5</td>
+      <td>1968</td>
+      <td>1968</td>
+      <td>0.000000</td>
+      <td>6.971669</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>527105010</td>
+      <td>4.110874</td>
+      <td>4.317488</td>
+      <td>9.534668</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1997</td>
+      <td>1998</td>
+      <td>0.000000</td>
+      <td>6.674561</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2925</th>
+      <td>923275080</td>
+      <td>4.394449</td>
+      <td>3.637586</td>
+      <td>8.979417</td>
+      <td>6</td>
+      <td>6</td>
+      <td>1984</td>
+      <td>1984</td>
+      <td>0.000000</td>
+      <td>6.709304</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2926</th>
+      <td>923276100</td>
+      <td>3.044522</td>
+      <td>4.234107</td>
+      <td>9.092232</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1983</td>
+      <td>1983</td>
+      <td>0.000000</td>
+      <td>5.710427</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2927</th>
+      <td>923400125</td>
+      <td>4.454347</td>
+      <td>4.143135</td>
+      <td>9.253591</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1992</td>
+      <td>1992</td>
+      <td>0.000000</td>
+      <td>5.823046</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2928</th>
+      <td>924100070</td>
+      <td>3.044522</td>
+      <td>4.356709</td>
+      <td>9.211440</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1974</td>
+      <td>1975</td>
+      <td>0.000000</td>
+      <td>6.977281</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2929</th>
+      <td>924151050</td>
+      <td>4.110874</td>
+      <td>4.317488</td>
+      <td>9.172431</td>
+      <td>7</td>
+      <td>5</td>
+      <td>1993</td>
+      <td>1994</td>
+      <td>4.553877</td>
+      <td>6.632002</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2930 rows × 321 columns</p>
+</div></div></div>
+</div>
+<p>Y las siguientes columnas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df_final</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PID
+MS SubClass
+Lot Frontage
+Lot Area
+Overall Qual
+Overall Cond
+Year Built
+Year Remod/Add
+Mas Vnr Area
+BsmtFin SF 1
+BsmtFin SF 2
+Bsmt Unf SF
+Total Bsmt SF
+1st Flr SF
+2nd Flr SF
+Low Qual Fin SF
+Gr Liv Area
+Bsmt Full Bath
+Bsmt Half Bath
+Full Bath
+Half Bath
+Bedroom AbvGr
+Kitchen AbvGr
+TotRms AbvGrd
+Fireplaces
+Garage Yr Blt
+Garage Cars
+Garage Area
+Wood Deck SF
+Open Porch SF
+Enclosed Porch
+3Ssn Porch
+Screen Porch
+Pool Area
+Misc Val
+Mo Sold
+Yr Sold
+SalePrice
+MS Zoning_A (agr)
+MS Zoning_C (all)
+MS Zoning_FV
+MS Zoning_I (all)
+MS Zoning_RH
+MS Zoning_RL
+MS Zoning_RM
+Street_Grvl
+Street_Pave
+Alley_Grvl
+Alley_Pave
+Alley_Sin categoria
+Lot Shape_IR1
+Lot Shape_IR2
+Lot Shape_IR3
+Lot Shape_Reg
+Land Contour_Bnk
+Land Contour_HLS
+Land Contour_Low
+Land Contour_Lvl
+Utilities_AllPub
+Utilities_NoSeWa
+Utilities_NoSewr
+Lot Config_Corner
+Lot Config_CulDSac
+Lot Config_FR2
+Lot Config_FR3
+Lot Config_Inside
+Land Slope_Gtl
+Land Slope_Mod
+Land Slope_Sev
+Neighborhood_Blmngtn
+Neighborhood_Blueste
+Neighborhood_BrDale
+Neighborhood_BrkSide
+Neighborhood_ClearCr
+Neighborhood_CollgCr
+Neighborhood_Crawfor
+Neighborhood_Edwards
+Neighborhood_Gilbert
+Neighborhood_Greens
+Neighborhood_GrnHill
+Neighborhood_IDOTRR
+Neighborhood_Landmrk
+Neighborhood_MeadowV
+Neighborhood_Mitchel
+Neighborhood_NAmes
+Neighborhood_NPkVill
+Neighborhood_NWAmes
+Neighborhood_NoRidge
+Neighborhood_NridgHt
+Neighborhood_OldTown
+Neighborhood_SWISU
+Neighborhood_Sawyer
+Neighborhood_SawyerW
+Neighborhood_Somerst
+Neighborhood_StoneBr
+Neighborhood_Timber
+Neighborhood_Veenker
+Condition 1_Artery
+Condition 1_Feedr
+Condition 1_Norm
+Condition 1_PosA
+Condition 1_PosN
+Condition 1_RRAe
+Condition 1_RRAn
+Condition 1_RRNe
+Condition 1_RRNn
+Condition 2_Artery
+Condition 2_Feedr
+Condition 2_Norm
+Condition 2_PosA
+Condition 2_PosN
+Condition 2_RRAe
+Condition 2_RRAn
+Condition 2_RRNn
+Bldg Type_1Fam
+Bldg Type_2fmCon
+Bldg Type_Duplex
+Bldg Type_Twnhs
+Bldg Type_TwnhsE
+House Style_1.5Fin
+House Style_1.5Unf
+House Style_1Story
+House Style_2.5Fin
+House Style_2.5Unf
+House Style_2Story
+House Style_SFoyer
+House Style_SLvl
+Roof Style_Flat
+Roof Style_Gable
+Roof Style_Gambrel
+Roof Style_Hip
+Roof Style_Mansard
+Roof Style_Shed
+Roof Matl_ClyTile
+Roof Matl_CompShg
+Roof Matl_Membran
+Roof Matl_Metal
+Roof Matl_Roll
+Roof Matl_Tar&amp;Grv
+Roof Matl_WdShake
+Roof Matl_WdShngl
+Exterior 1st_AsbShng
+Exterior 1st_AsphShn
+Exterior 1st_BrkComm
+Exterior 1st_BrkFace
+Exterior 1st_CBlock
+Exterior 1st_CemntBd
+Exterior 1st_HdBoard
+Exterior 1st_ImStucc
+Exterior 1st_MetalSd
+Exterior 1st_Plywood
+Exterior 1st_PreCast
+Exterior 1st_Stone
+Exterior 1st_Stucco
+Exterior 1st_VinylSd
+Exterior 1st_Wd Sdng
+Exterior 1st_WdShing
+Exterior 2nd_AsbShng
+Exterior 2nd_AsphShn
+Exterior 2nd_Brk Cmn
+Exterior 2nd_BrkFace
+Exterior 2nd_CBlock
+Exterior 2nd_CmentBd
+Exterior 2nd_HdBoard
+Exterior 2nd_ImStucc
+Exterior 2nd_MetalSd
+Exterior 2nd_Other
+Exterior 2nd_Plywood
+Exterior 2nd_PreCast
+Exterior 2nd_Stone
+Exterior 2nd_Stucco
+Exterior 2nd_VinylSd
+Exterior 2nd_Wd Sdng
+Exterior 2nd_Wd Shng
+Mas Vnr Type_BrkCmn
+Mas Vnr Type_BrkFace
+Mas Vnr Type_CBlock
+Mas Vnr Type_Sin categoria
+Mas Vnr Type_Stone
+Exter Qual_Ex
+Exter Qual_Fa
+Exter Qual_Gd
+Exter Qual_TA
+Exter Cond_Ex
+Exter Cond_Fa
+Exter Cond_Gd
+Exter Cond_Po
+Exter Cond_TA
+Foundation_BrkTil
+Foundation_CBlock
+Foundation_PConc
+Foundation_Slab
+Foundation_Stone
+Foundation_Wood
+Bsmt Qual_Ex
+Bsmt Qual_Fa
+Bsmt Qual_Gd
+Bsmt Qual_Po
+Bsmt Qual_Sin categoria
+Bsmt Qual_TA
+Bsmt Cond_Ex
+Bsmt Cond_Fa
+Bsmt Cond_Gd
+Bsmt Cond_Po
+Bsmt Cond_Sin categoria
+Bsmt Cond_TA
+Bsmt Exposure_Av
+Bsmt Exposure_Gd
+Bsmt Exposure_Mn
+Bsmt Exposure_No
+Bsmt Exposure_Sin categoria
+BsmtFin Type 1_ALQ
+BsmtFin Type 1_BLQ
+BsmtFin Type 1_GLQ
+BsmtFin Type 1_LwQ
+BsmtFin Type 1_Rec
+BsmtFin Type 1_Sin categoria
+BsmtFin Type 1_Unf
+BsmtFin Type 2_ALQ
+BsmtFin Type 2_BLQ
+BsmtFin Type 2_GLQ
+BsmtFin Type 2_LwQ
+BsmtFin Type 2_Rec
+BsmtFin Type 2_Sin categoria
+BsmtFin Type 2_Unf
+Heating_Floor
+Heating_GasA
+Heating_GasW
+Heating_Grav
+Heating_OthW
+Heating_Wall
+Heating QC_Ex
+Heating QC_Fa
+Heating QC_Gd
+Heating QC_Po
+Heating QC_TA
+Central Air_N
+Central Air_Y
+Electrical_FuseA
+Electrical_FuseF
+Electrical_FuseP
+Electrical_Mix
+Electrical_SBrkr
+Electrical_Sin categoria
+Kitchen Qual_Ex
+Kitchen Qual_Fa
+Kitchen Qual_Gd
+Kitchen Qual_Po
+Kitchen Qual_TA
+Functional_Maj1
+Functional_Maj2
+Functional_Min1
+Functional_Min2
+Functional_Mod
+Functional_Sal
+Functional_Sev
+Functional_Typ
+Fireplace Qu_Ex
+Fireplace Qu_Fa
+Fireplace Qu_Gd
+Fireplace Qu_Po
+Fireplace Qu_Sin categoria
+Fireplace Qu_TA
+Garage Type_2Types
+Garage Type_Attchd
+Garage Type_Basment
+Garage Type_BuiltIn
+Garage Type_CarPort
+Garage Type_Detchd
+Garage Type_Sin categoria
+Garage Finish_Fin
+Garage Finish_RFn
+Garage Finish_Sin categoria
+Garage Finish_Unf
+Garage Qual_Ex
+Garage Qual_Fa
+Garage Qual_Gd
+Garage Qual_Po
+Garage Qual_Sin categoria
+Garage Qual_TA
+Garage Cond_Ex
+Garage Cond_Fa
+Garage Cond_Gd
+Garage Cond_Po
+Garage Cond_Sin categoria
+Garage Cond_TA
+Paved Drive_N
+Paved Drive_P
+Paved Drive_Y
+Pool QC_Ex
+Pool QC_Fa
+Pool QC_Gd
+Pool QC_Sin categoria
+Pool QC_TA
+Fence_GdPrv
+Fence_GdWo
+Fence_MnPrv
+Fence_MnWw
+Fence_Sin categoria
+Misc Feature_Elev
+Misc Feature_Gar2
+Misc Feature_Othr
+Misc Feature_Shed
+Misc Feature_Sin categoria
+Misc Feature_TenC
+Sale Type_COD
+Sale Type_CWD
+Sale Type_Con
+Sale Type_ConLD
+Sale Type_ConLI
+Sale Type_ConLw
+Sale Type_New
+Sale Type_Oth
+Sale Type_VWD
+Sale Type_WD 
+Sale Condition_Abnorml
+Sale Condition_AdjLand
+Sale Condition_Alloca
+Sale Condition_Family
+Sale Condition_Normal
+Sale Condition_Partial
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observamos un aumento significativo en el número de columnas, debido al One-hot-encoding, más adelante filtraremos las columnas a utilizar a aquellas que tengan más relevancia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 2930 entries, 0 to 2929
+Columns: 321 entries, PID to Sale Condition_Partial
+dtypes: float64(308), int64(13)
+memory usage: 7.2 MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PID</th>
+      <th>MS SubClass</th>
+      <th>Lot Frontage</th>
+      <th>Lot Area</th>
+      <th>Overall Qual</th>
+      <th>Overall Cond</th>
+      <th>Year Built</th>
+      <th>Year Remod/Add</th>
+      <th>Mas Vnr Area</th>
+      <th>BsmtFin SF 1</th>
+      <th>...</th>
+      <th>Sale Type_New</th>
+      <th>Sale Type_Oth</th>
+      <th>Sale Type_VWD</th>
+      <th>Sale Type_WD</th>
+      <th>Sale Condition_Abnorml</th>
+      <th>Sale Condition_AdjLand</th>
+      <th>Sale Condition_Alloca</th>
+      <th>Sale Condition_Family</th>
+      <th>Sale Condition_Normal</th>
+      <th>Sale Condition_Partial</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2.930000e+03</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>...</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+      <td>2930.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>7.144645e+08</td>
+      <td>3.824262</td>
+      <td>4.201376</td>
+      <td>9.092342</td>
+      <td>6.094881</td>
+      <td>5.563140</td>
+      <td>1971.356314</td>
+      <td>1984.266553</td>
+      <td>2.073303</td>
+      <td>4.233941</td>
+      <td>...</td>
+      <td>0.081570</td>
+      <td>0.002389</td>
+      <td>0.000341</td>
+      <td>0.865529</td>
+      <td>0.064846</td>
+      <td>0.004096</td>
+      <td>0.008191</td>
+      <td>0.015700</td>
+      <td>0.823549</td>
+      <td>0.083618</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.887308e+08</td>
+      <td>0.693861</td>
+      <td>0.321038</td>
+      <td>0.511054</td>
+      <td>1.411026</td>
+      <td>1.111537</td>
+      <td>30.245361</td>
+      <td>20.860286</td>
+      <td>2.619556</td>
+      <td>2.979927</td>
+      <td>...</td>
+      <td>0.273755</td>
+      <td>0.048828</td>
+      <td>0.018474</td>
+      <td>0.341216</td>
+      <td>0.246297</td>
+      <td>0.063876</td>
+      <td>0.090149</td>
+      <td>0.124332</td>
+      <td>0.381268</td>
+      <td>0.276861</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>5.263011e+08</td>
+      <td>3.044522</td>
+      <td>3.091042</td>
+      <td>7.170888</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1872.000000</td>
+      <td>1950.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>5.284770e+08</td>
+      <td>3.044522</td>
+      <td>4.110874</td>
+      <td>8.914794</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>1954.000000</td>
+      <td>1965.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.354536e+08</td>
+      <td>3.931826</td>
+      <td>4.234107</td>
+      <td>9.152446</td>
+      <td>6.000000</td>
+      <td>5.000000</td>
+      <td>1973.000000</td>
+      <td>1993.000000</td>
+      <td>0.000000</td>
+      <td>5.916202</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>9.071811e+08</td>
+      <td>4.262680</td>
+      <td>4.369448</td>
+      <td>9.354982</td>
+      <td>7.000000</td>
+      <td>6.000000</td>
+      <td>2001.000000</td>
+      <td>2004.000000</td>
+      <td>5.098337</td>
+      <td>6.599870</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.007100e+09</td>
+      <td>5.252273</td>
+      <td>5.749393</td>
+      <td>12.279537</td>
+      <td>10.000000</td>
+      <td>9.000000</td>
+      <td>2010.000000</td>
+      <td>2010.000000</td>
+      <td>7.378384</td>
+      <td>8.638525</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 321 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span><span class="o">.</span><span class="n">describe</span><span class="p">()[</span><span class="s1">&#39;Gr Liv Area&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    2930.000000
+mean        7.260868
+std         0.324447
+min         5.814131
+25%         7.027315
+50%         7.274480
+75%         7.463793
+max         8.638171
+Name: Gr Liv Area, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente, convertimos nuestro DataFrame modificado a un csv, para poder exportarlo en futuras referencias</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../Data/Ames-Housing-Processed.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01-introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1. Introducción</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03-eda.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. Análisis Exploratorio de Datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-modulos-de-python-a-usar">2.1 Importación de modulos de Python a usar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-dataset">2.2 Lectura del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-y-analisis-inicial-del-dataset">2.3 Descripción y analisis inicial del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-dataset">2.4 Limpieza del dataset</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabian Manrique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

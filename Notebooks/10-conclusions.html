@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Respuesta a preguntas Iniciales &#8212; Ames Housing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/10-conclusions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Ground Living area" href="09-interpretation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Ames Housing - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Ames Housing - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    1. Introducción
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0.1 Instalación de módulos</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-data-cleaning.html">2. Descripción y limpieza del dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-eda.html">3. Análisis Exploratorio de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-ols-matrix.html">4. Formulación matricial del modelo OLS (Mínimos cuadrados)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-inference.html">5. Inferencia y grados de libertad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-diagnostics.html">6. Diagnóstico de supuestos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-robust-methods.html">7. Remedios y métodos robustos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-validation.html">8. Validación y selección de modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">Ground Living area</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Respuesta a preguntas Iniciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Fabian-11037/ames-housing-project/tree/main" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Fabian-11037/ames-housing-project/tree/main/issues/new?title=Issue%20on%20page%20%2FNotebooks/10-conclusions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Notebooks/10-conclusions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>10. Respuesta a preguntas Iniciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas-dummies-de-calidad">Variables categóricas (dummies de calidad)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularizacion">10.1 Regularización</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-robustos">10.2 Metodos Robustos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-validacion-de-supuestos">10.3 Metodos de validación de supuestos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="respuesta-a-preguntas-iniciales">
+<h1>10. Respuesta a preguntas Iniciales<a class="headerlink" href="#respuesta-a-preguntas-iniciales" title="Link to this heading">#</a></h1>
+<p>Las variables más relevantes para determinar el precio de las casas del dataset de Ames son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Significado</strong></p></th>
+<th class="head"><p><strong>Interpretación</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>OverallQual</strong></p></td>
+<td><p><em>Overall Material and Finish Quality</em> → Calidad general de los materiales y acabados.</p></td>
+<td><p>Escala del <strong>1 al 10</strong> que evalúa la calidad general de la construcción y los acabados. Un valor alto indica <strong>mejor calidad</strong> y suele asociarse con precios más altos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GrLivArea</strong></p></td>
+<td><p><em>Ground Living Area (sq ft)</em> → Área habitable sobre el nivel del suelo (en pies²).</p></td>
+<td><p>Representa el <strong>espacio habitable total por encima del suelo</strong>, sin incluir sótanos ni garajes. Es una de las variables más correlacionadas con <code class="docutils literal notranslate"><span class="pre">SalePrice</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>GarageArea</strong></p></td>
+<td><p><em>Garage Area (sq ft)</em> → Área del garaje (en pies²).</p></td>
+<td><p>Indica el <strong>tamaño del garaje</strong>, lo que refleja capacidad de estacionamiento o espacio adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>YearBuilt</strong></p></td>
+<td><p><em>Original Construction Year</em> → Año de construcción original.</p></td>
+<td><p>Año en que fue construida la vivienda. Las casas más nuevas tienden a tener <strong>mayor valor</strong>, aunque también depende del mantenimiento y remodelaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>1stFlrSF</strong></p></td>
+<td><p><em>First Floor Square Feet</em> → Superficie del primer piso (en pies²).</p></td>
+<td><p>Área del <strong>primer nivel</strong> de la vivienda. Puede correlacionarse con <code class="docutils literal notranslate"><span class="pre">GrLivArea</span></code>, pero se refiere específicamente al piso inferior.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>YearRemod/Add</strong></p></td>
+<td><p><em>Remodel Year</em> → Año de remodelación o ampliación.</p></td>
+<td><p>Año en que la vivienda fue <strong>remodelada o ampliada</strong>. Si coincide con <code class="docutils literal notranslate"><span class="pre">YearBuilt</span></code>, significa que <strong>no ha sido remodelada</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>FullBath</strong></p></td>
+<td><p><em>Full Bathrooms Above Grade</em> → Número de baños completos sobre el nivel del suelo.</p></td>
+<td><p>Cuenta los baños con ducha o bañera ubicados <strong>en niveles habitables</strong>, lo que impacta en la comodidad y el valor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GarageYrBlt</strong></p></td>
+<td><p><em>Year Garage was Built</em> → Año de construcción del garaje.</p></td>
+<td><p>Indica cuándo se construyó el garaje. Si es nulo, la vivienda <strong>no tiene garaje</strong>. También refleja la antigüedad de la infraestructura.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<section id="variables-categoricas-dummies-de-calidad">
+<h2>Variables categóricas (dummies de calidad)<a class="headerlink" href="#variables-categoricas-dummies-de-calidad" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Significado</strong></p></th>
+<th class="head"><p><strong>Interpretación del valor 1</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>KitchenQual_TA</strong></p></td>
+<td><p><em>Kitchen Quality = Typical/Average</em> → Calidad promedio de la cocina.</p></td>
+<td><p>La cocina tiene materiales y acabados <strong>de nivel medio</strong>, ni lujosos ni deficientes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>FireplaceQu_Sin categoria</strong></p></td>
+<td><p><em>Fireplace Quality = Sin categoría / Nulo</em></p></td>
+<td><p>Indica que la <strong>calidad de la chimenea no fue registrada</strong> o que la casa <strong>no tiene chimenea</strong>. Esta categoría fue creada durante la limpieza de datos para representar los valores faltantes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p>Estas variables demostraron ser significativas, incluso usando metodos lineales más robustos como HC3 o Huber.</p>
+<p>En conclusión, aprendimos lo siguiente sobre Métodos lineales:</p>
+</section>
+<section id="regularizacion">
+<h2>10.1 Regularización<a class="headerlink" href="#regularizacion" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Característica</p></th>
+<th class="head"><p><strong>OLS (Mínimos Cuadrados Ordinarios)</strong></p></th>
+<th class="head"><p><strong>Ridge (Regresión de cresta)</strong></p></th>
+<th class="head"><p><strong>Lasso (Regresión L1)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Ecuación de optimización</strong></p></td>
+<td><p>Minimiza:  <img alt="OLS" src="https://latex.codecogs.com/svg.image?%5Cmin_%7B%5Cbeta%7D%5Csum_i(y_i-%5Chat%7By_i%7D)%5E2" /></p></td>
+<td><p>Minimiza:  <img alt="Ridge" src="https://latex.codecogs.com/svg.image?%5Cmin_%7B%5Cbeta%7D%5Csum_i(y_i-%5Chat%7By_i%7D)%5E2+%5Clambda%5Csum_j%5Cbeta_j%5E2" /></p></td>
+<td><p>Minimiza:  <img alt="Lasso" src="https://latex.codecogs.com/svg.image?%5Cmin_%7B%5Cbeta%7D%5Csum_i(y_i-%5Chat%7By_i%7D)%5E2+%5Clambda%5Csum_j%7C%5Cbeta_j%7C" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tipo de penalización</strong></p></td>
+<td><p>Sin penalización</p></td>
+<td><p>Penalización L2 (cuadrática)</p></td>
+<td><p>Penalización L1 (absoluta)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Objetivo principal</strong></p></td>
+<td><p>Ajuste puro a los datos</p></td>
+<td><p>Reducir la varianza del modelo</p></td>
+<td><p>Selección de variables y regularización</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Efecto de la penalización</strong></p></td>
+<td><p>Ninguno</p></td>
+<td><p>Reduce la magnitud de los coeficientes pero no los elimina</p></td>
+<td><p>Puede llevar algunos coeficientes exactamente a 0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interpretación de coeficientes</strong></p></td>
+<td><p>Todos los predictores contribuyen al modelo</p></td>
+<td><p>Todos contribuyen pero con menor peso</p></td>
+<td><p>Algunos predictores se eliminan (coef. = 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Control de sobreajuste</strong></p></td>
+<td><p>Limitado</p></td>
+<td><p>Bueno (reduce varianza)</p></td>
+<td><p>Bueno, además realiza selección automática</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dependencia entre predictores</strong></p></td>
+<td><p>Sensible a la multicolinealidad</p></td>
+<td><p>Maneja bien la multicolinealidad</p></td>
+<td><p>Tiende a seleccionar uno de los predictores correlacionados</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Hiperparámetro λ (alpha)</strong></p></td>
+<td><p>No aplica</p></td>
+<td><p>Controla el grado de penalización L2</p></td>
+<td><p>Controla el grado de penalización L1</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Valor típico de λ</strong></p></td>
+<td><p>—</p></td>
+<td><p>λ ∈ [10⁻³, 10³], ajustado por validación cruzada</p></td>
+<td><p>λ ∈ [10⁻³, 10³], ajustado por validación cruzada</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Comportamiento con outliers</strong></p></td>
+<td><p>Muy sensible</p></td>
+<td><p>Algo más robusto</p></td>
+<td><p>Algo más robusto</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Uso común</strong></p></td>
+<td><p>Modelos explicativos</p></td>
+<td><p>Modelos predictivos estables</p></td>
+<td><p>Modelos con selección de características</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Ejemplo de uso en <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinearRegression()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ridge(alpha=λ)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Lasso(alpha=λ)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="metodos-robustos">
+<h2>10.2 Metodos Robustos<a class="headerlink" href="#metodos-robustos" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Característica</p></th>
+<th class="head"><p><strong>OLS (Mínimos Cuadrados Ordinarios)</strong></p></th>
+<th class="head"><p><strong>HC3 (Heterocedasticity-Consistent)</strong></p></th>
+<th class="head"><p><strong>Bootstrap</strong></p></th>
+<th class="head"><p><strong>Huber (RLM)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Tipo de estimación</strong></p></td>
+<td><p>Estimador clásico de mínimos cuadrados</p></td>
+<td><p>OLS con corrección de varianza robusta</p></td>
+<td><p>Estimación empírica por remuestreo</p></td>
+<td><p>Regresión robusta (función de pérdida modificada)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Base teórica</strong></p></td>
+<td><p>Minimiza la suma de errores cuadráticos</p></td>
+<td><p>Ajuste de errores estándar según White (HC3)</p></td>
+<td><p>Basado en distribución empírica de coeficientes</p></td>
+<td><p>Minimiza función de pérdida Huber (mixta L1–L2)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Qué corrige</strong></p></td>
+<td><p>Nada (asume homocedasticidad y normalidad)</p></td>
+<td><p>Heterocedasticidad</p></td>
+<td><p>Inestabilidad muestral y varianza</p></td>
+<td><p>Influencia de outliers</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Supuestos clave</strong></p></td>
+<td><p>Homocedasticidad, independencia, normalidad</p></td>
+<td><p>Relaja homocedasticidad</p></td>
+<td><p>Relaja todos los supuestos paramétricos</p></td>
+<td><p>Relaja normalidad y sensibilidad a outliers</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Efecto sobre los coeficientes</strong></p></td>
+<td><p>Coeficientes exactos de OLS</p></td>
+<td><p>Igual que OLS</p></td>
+<td><p>Varía según muestra bootstrap</p></td>
+<td><p>Modificados por ponderación robusta</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Efecto sobre los errores estándar</strong></p></td>
+<td><p>Subestimados si hay heterocedasticidad</p></td>
+<td><p>Corrige errores estándar (robustos)</p></td>
+<td><p>Estimados empíricamente por remuestreo</p></td>
+<td><p>Ajustados por pesos observacionales</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sensibilidad a outliers</strong></p></td>
+<td><p>Alta</p></td>
+<td><p>Alta</p></td>
+<td><p>Media (depende de las réplicas)</p></td>
+<td><p>Baja (reduce peso de outliers)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sensibilidad a heterocedasticidad</strong></p></td>
+<td><p>Alta</p></td>
+<td><p>Baja</p></td>
+<td><p>Media</p></td>
+<td><p>Baja</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Ventajas</strong></p></td>
+<td><p>Simple e interpretativo</p></td>
+<td><p>Mejora inferencia sin cambiar coeficientes</p></td>
+<td><p>No depende de supuestos teóricos</p></td>
+<td><p>Robusto frente a outliers e inestabilidad</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Desventajas</strong></p></td>
+<td><p>Sesgo en errores si no se cumplen supuestos</p></td>
+<td><p>No corrige outliers</p></td>
+<td><p>Costoso computacionalmente</p></td>
+<td><p>Menos eficiente si no hay outliers</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Resultado principal</strong></p></td>
+<td><p>Coeficientes y errores estándar clásicos</p></td>
+<td><p>Errores estándar robustos (HC3)</p></td>
+<td><p>Distribución empírica de parámetros</p></td>
+<td><p>Coeficientes robustos y pesos observacionales</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Implementación en Python</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sm.OLS(y,</span> <span class="pre">X).fit()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sm.OLS(y,</span> <span class="pre">X).fit(cov_type='HC3')</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resample(X,</span> <span class="pre">y)</span></code> + <code class="docutils literal notranslate"><span class="pre">sm.OLS</span></code> repetido</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sm.RLM(y,</span> <span class="pre">X,</span> <span class="pre">M=sm.robust.norms.HuberT())</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interpretación de pesos</strong></p></td>
+<td><p>Todos iguales</p></td>
+<td><p>Todos iguales</p></td>
+<td><p>Depende del remuestreo</p></td>
+<td><p>Menores para residuales grandes</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tipo de robustez</strong></p></td>
+<td><p>Ninguna</p></td>
+<td><p>Varianza robusta</p></td>
+<td><p>Muestral (bootstraping)</p></td>
+<td><p>Observacional (residual-based)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="metodos-de-validacion-de-supuestos">
+<h2>10.3 Metodos de validación de supuestos<a class="headerlink" href="#metodos-de-validacion-de-supuestos" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Supuesto</strong></p></th>
+<th class="head"><p><strong>Método de validación</strong></p></th>
+<th class="head"><p><strong>Procedimiento / Estadístico</strong></p></th>
+<th class="head"><p><strong>Interpretación esperada (modelo adecuado)</strong></p></th>
+<th class="head"><p><strong>Código típico (Python / statsmodels)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Linealidad</strong></p></td>
+<td><p>Gráfico de residuos vs. valores ajustados</p></td>
+<td><p>Dispersión aleatoria de los residuos alrededor de 0</p></td>
+<td><p>No debe observarse patrón sistemático; los residuos deben distribuirse aleatoriamente</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sns.residplot(x=fitted,</span> <span class="pre">y=residuals)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Homoscedasticidad (varianza constante)</strong></p></td>
+<td><p><strong>Test de Breusch–Pagan</strong> o <strong>White</strong></p></td>
+<td><p>( H_0: \text{varianza constante} )</p></td>
+<td><p>p-value &gt; 0.05 → no hay evidencia de heterocedasticidad</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">het_breuschpagan(resid,</span> <span class="pre">X)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Gráfico de residuos vs. ajustados</strong></p></td>
+<td><p>Residuos con dispersión uniforme</p></td>
+<td><p>No debe observarse cono o patrón de expansión</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plt.scatter(fitted,</span> <span class="pre">resid)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Normalidad de errores</strong></p></td>
+<td><p><strong>QQ-Plot (Quantile-Quantile)</strong></p></td>
+<td><p>Comparación visual con la distribución normal teórica</p></td>
+<td><p>Puntos cercanos a la línea diagonal → residuos normales</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sm.qqplot(residuals,</span> <span class="pre">line='45')</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Shapiro-Wilk / Jarque–Bera test</strong></p></td>
+<td><p>( H_0: \text{residuos normales} )</p></td>
+<td><p>p-value &gt; 0.05 → normalidad no rechazada</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sm.stats.jarque_bera(resid)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Independencia de errores (no autocorrelación)</strong></p></td>
+<td><p><strong>Durbin–Watson test</strong></p></td>
+<td><p>( 0 &lt; DW &lt; 4 ), ideal ≈ 2</p></td>
+<td><p>Valores cercanos a 2 → sin autocorrelación</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sm.stats.stattools.durbin_watson(resid)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Multicolinealidad</strong></p></td>
+<td><p><strong>VIF (Variance Inflation Factor)</strong></p></td>
+<td><p>( VIF_j = \frac{1}{1 - R_j^2} )</p></td>
+<td><p>VIF &lt; 5 → aceptable, VIF &gt; 10 → colinealidad alta</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">variance_inflation_factor(X.values,</span> <span class="pre">i)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09-interpretation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ground Living area</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas-dummies-de-calidad">Variables categóricas (dummies de calidad)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularizacion">10.1 Regularización</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-robustos">10.2 Metodos Robustos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-validacion-de-supuestos">10.3 Metodos de validación de supuestos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabian Manrique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
