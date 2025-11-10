@@ -182,8 +182,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0.1 Instalación de módulos</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0. Preparación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-data-cleaning.html">2. Descripción y limpieza del dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-eda.html">3. Análisis Exploratorio de Datos</a></li>
@@ -192,7 +191,7 @@
 <li class="toctree-l1"><a class="reference internal" href="06-diagnostics.html">6. Diagnóstico de supuestos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-robust-methods.html">7. Remedios y métodos robustos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-validation.html">8. Validación y selección de modelo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">Ground Living area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">9. Interpretación de Resultados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10-conclusions.html">10. Respuesta a preguntas Iniciales</a></li>
 </ul>
 
@@ -389,16 +388,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-beta-epsilon-y"><p style="text-align:center;"><span class="math notranslate nohighlight">\(X\beta + \epsilon= Y\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#s-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta"><p style="text-align:center;"><span class="math notranslate nohighlight">\(S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frac-partial-s-boldsymbol-beta-partial-boldsymbol-beta-2-mathbf-x-mathbf-y-mathbf-x-boldsymbol-beta-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(\frac{\partial S(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-mathbf-x-mathbf-x-boldsymbol-beta-mathbf-x-mathbf-y"><p style="text-align:center;"><span class="math notranslate nohighlight">\(\Rightarrow \mathbf{X}'\mathbf{X}\boldsymbol{\beta} = \mathbf{X}'\mathbf{y}\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-boxed-hat-boldsymbol-beta-mathbf-x-mathbf-x-1-mathbf-x-mathbf-y"><p style="text-align:center;"><span class="math notranslate nohighlight">\(\Rightarrow \boxed{\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}}\)</span></p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicacion-forma-matricial">4.1 Explicación forma matricial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-matricial">4.2 Regresión lineal matricial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-con-statsmodel">4.3 Comparación con STATSMODEL</a></li>
 </ul>
             </nav>
         </div>
@@ -412,9 +404,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="formulacion-matricial-del-modelo-ols-minimos-cuadrados">
 <h1>4. Formulación matricial del modelo OLS (Mínimos cuadrados)<a class="headerlink" href="#formulacion-matricial-del-modelo-ols-minimos-cuadrados" title="Link to this heading">#</a></h1>
+<section id="explicacion-forma-matricial">
+<h2>4.1 Explicación forma matricial<a class="headerlink" href="#explicacion-forma-matricial" title="Link to this heading">#</a></h2>
 <p>Para la formulación matricial del modelo lineal se expresa de la siguiente manera:</p>
-<section id="x-beta-epsilon-y">
-<h2><p style="text-align:center;"><span class="math notranslate nohighlight">\(X\beta + \epsilon= Y\)</span></p><a class="headerlink" href="#x-beta-epsilon-y" title="Link to this heading">#</a></h2>
+<p style="text-align:center;">$X\beta + \epsilon= Y$</p>
 <p>Donde:</p>
 <ul class="simple">
 <li><p><strong><span class="math notranslate nohighlight">\(\beta\)</span></strong> es una matriz de coeficientes de tamaño <span class="math notranslate nohighlight">\((p+1)\times1\)</span>, que contiene los coeficientes <span class="math notranslate nohighlight">\(\beta_0, \beta_1,...,\beta_{p}\)</span></p></li>
@@ -423,70 +416,44 @@ document.write(`
 <li><p><strong>Y</strong> es una matriz de tamaño <span class="math notranslate nohighlight">\(n \times 1\)</span> las observaciones obtenidas de la variable objetivo.</p></li>
 </ul>
 <p>Recordamos que el objetivo del metodo de mínimos cuadrados es minimizar la función de pérdida, dada por:</p>
-</section>
-<section id="s-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta">
-<h2><p style="text-align:center;"><span class="math notranslate nohighlight">\(S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})\)</span></p><a class="headerlink" href="#s-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta" title="Link to this heading">#</a></h2>
+<p style="text-align:center;">$S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})$</p>
 <p>Para minimar el error, es necesario derivar la expresión anterior, para lo cual la expandimos:</p>
-</section>
-<section id="id1">
-<h2><p style="text-align:center;">$<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>\begin{aligned}
+<p style="text-align:center;">$
+\begin{aligned}
 S(\boldsymbol{\beta})
-&amp;= (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})’(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) \
-&amp;= \mathbf{y}’ \mathbf{y}</p>
-<ul class="simple">
-<li><p>\mathbf{y}’ \mathbf{X}\boldsymbol{\beta}</p></li>
-<li><p>(\mathbf{X}\boldsymbol{\beta})’ \mathbf{y}</p></li>
-</ul>
-<ul class="simple">
-<li><p>(\mathbf{X}\boldsymbol{\beta})’ (\mathbf{X}\boldsymbol{\beta}) \
-&amp;= \mathbf{y}’ \mathbf{y}</p></li>
-</ul>
-<ul class="simple">
-<li><p>2\boldsymbol{\beta}’ \mathbf{X}’ \mathbf{y}</p></li>
-</ul>
-<ul class="simple">
-<li><p>\boldsymbol{\beta}’ \mathbf{X}’ \mathbf{X} \boldsymbol{\beta}.
+&= (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) \\
+&= \mathbf{y}' \mathbf{y}
+   - \mathbf{y}' \mathbf{X}\boldsymbol{\beta}
+   - (\mathbf{X}\boldsymbol{\beta})' \mathbf{y}
+   + (\mathbf{X}\boldsymbol{\beta})' (\mathbf{X}\boldsymbol{\beta}) \\
+&= \mathbf{y}' \mathbf{y}
+   - 2\boldsymbol{\beta}' \mathbf{X}' \mathbf{y}
+   + \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta}.
 \end{aligned}
-$</p></p></li>
-</ul>
+$</p>
 <p>(Usamos que <span class="math notranslate nohighlight">\((\mathbf{y}^\top\mathbf{X}\boldsymbol{\beta})^\top = \boldsymbol{\beta}^\top\mathbf{X}^\top\mathbf{y}\)</span>, ya que ambos son escalares.)</p>
 <hr class="docutils" />
 <p>Aplicamos las reglas de derivación matricial:</p>
-</section>
-<section id="id2">
-<h2><p style="text-align:center;">$<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>\frac{\partial (\mathbf{y}’ \mathbf{y})}{\partial \boldsymbol{\beta}} = 0
-$</p></p>
-</section>
-<section id="id3">
-<h2><p style="text-align:center;">$<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>\frac{\partial (-2\boldsymbol{\beta}’ \mathbf{X}’ \mathbf{y})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}’ \mathbf{y}
-$</p></p>
-</section>
-<section id="id4">
-<h2><p style="text-align:center;">$<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>\frac{\partial (\boldsymbol{\beta}’ \mathbf{X}’ \mathbf{X} \boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = 2\mathbf{X}’ \mathbf{X}\boldsymbol{\beta}
-$</p></p>
+<p style="text-align:center;">$
+\frac{\partial (\mathbf{y}' \mathbf{y})}{\partial \boldsymbol{\beta}} = 0
+$</p>
+<p style="text-align:center;">$
+\frac{\partial (-2\boldsymbol{\beta}' \mathbf{X}' \mathbf{y})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}' \mathbf{y}
+$</p>
+<p style="text-align:center;">$
+\frac{\partial (\boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = 2\mathbf{X}' \mathbf{X}\boldsymbol{\beta}
+$</p>
 <p>Sumando los términos:</p>
-</section>
-<section id="id5">
-<h2><p style="text-align:center;">$<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>\nabla_{\boldsymbol{\beta}} S(\boldsymbol{\beta})
-= -2\mathbf{X}’ \mathbf{y} + 2\mathbf{X}’ \mathbf{X}\boldsymbol{\beta}
-= 2\mathbf{X}’(\mathbf{X}\boldsymbol{\beta} - \mathbf{y})
-$</p></p>
+<p style="text-align:center;">$
+\nabla_{\boldsymbol{\beta}} S(\boldsymbol{\beta})
+= -2\mathbf{X}' \mathbf{y} + 2\mathbf{X}' \mathbf{X}\boldsymbol{\beta}
+= 2\mathbf{X}'(\mathbf{X}\boldsymbol{\beta} - \mathbf{y})
+$</p>
 <hr class="docutils" />
 <p>Para encontrar el valor de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> que minimiza <span class="math notranslate nohighlight">\(S(\boldsymbol{\beta})\)</span>, se iguala la derivada a cero:</p>
-</section>
-<section id="frac-partial-s-boldsymbol-beta-partial-boldsymbol-beta-2-mathbf-x-mathbf-y-mathbf-x-boldsymbol-beta-0">
-<h2><p style="text-align:center;"><span class="math notranslate nohighlight">\(\frac{\partial S(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0\)</span></p><a class="headerlink" href="#frac-partial-s-boldsymbol-beta-partial-boldsymbol-beta-2-mathbf-x-mathbf-y-mathbf-x-boldsymbol-beta-0" title="Link to this heading">#</a></h2>
-</section>
-<section id="rightarrow-mathbf-x-mathbf-x-boldsymbol-beta-mathbf-x-mathbf-y">
-<h2><p style="text-align:center;"><span class="math notranslate nohighlight">\(\Rightarrow \mathbf{X}'\mathbf{X}\boldsymbol{\beta} = \mathbf{X}'\mathbf{y}\)</span></p><a class="headerlink" href="#rightarrow-mathbf-x-mathbf-x-boldsymbol-beta-mathbf-x-mathbf-y" title="Link to this heading">#</a></h2>
-</section>
-<section id="rightarrow-boxed-hat-boldsymbol-beta-mathbf-x-mathbf-x-1-mathbf-x-mathbf-y">
-<h2><p style="text-align:center;"><span class="math notranslate nohighlight">\(\Rightarrow \boxed{\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}}\)</span></p><a class="headerlink" href="#rightarrow-boxed-hat-boldsymbol-beta-mathbf-x-mathbf-x-1-mathbf-x-mathbf-y" title="Link to this heading">#</a></h2>
+<p style="text-align:center;">$\frac{\partial S(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0$</p>
+<p style="text-align:center;">$\Rightarrow \mathbf{X}'\mathbf{X}\boldsymbol{\beta} = \mathbf{X}'\mathbf{y}$</p>
+<p style="text-align:center;">$\Rightarrow \boxed{\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}}$</p>
 <p>Esta es la <strong>solución matricial de los Mínimos Cuadrados Ordinarios (OLS)</strong>.</p>
 <p>Ahora bien, para que el determinante de <span class="math notranslate nohighlight">\((X'X)\)</span> sea distinto de 0 y, por tanto, sea invertible, todas las n filas de observaciones deben ser linealmente independientes las unas contras, es decir, no pude existir una combinación lineal tal que al aplicarlas a una de las observaciones se obtenga como resultado otra de las observaciones.</p>
 <p>Expresado en terminos más simples, cada observación debe ser independiente de la otra, y no puede existir correlaciones entre ellas.</p>
@@ -617,6 +584,9 @@ $</p></p>
 </div>
 </div>
 </div>
+</section>
+<section id="regresion-lineal-matricial">
+<h2>4.2 Regresión lineal matricial<a class="headerlink" href="#regresion-lineal-matricial" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encontramos B usando la forma matricial</span>
@@ -648,6 +618,9 @@ $</p></p>
 </div>
 </div>
 </div>
+</section>
+<section id="comparacion-con-statsmodel">
+<h2>4.3 Comparación con STATSMODEL<a class="headerlink" href="#comparacion-con-statsmodel" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># usamos statmodels para comparar su modelo con el modelo obtenido</span>
@@ -758,16 +731,9 @@ $</p></p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-beta-epsilon-y"><p style="text-align:center;"><span class="math notranslate nohighlight">\(X\beta + \epsilon= Y\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#s-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta-mathbf-y-mathbf-x-boldsymbol-beta"><p style="text-align:center;"><span class="math notranslate nohighlight">\(S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><p style="text-align:center;">$</p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frac-partial-s-boldsymbol-beta-partial-boldsymbol-beta-2-mathbf-x-mathbf-y-mathbf-x-boldsymbol-beta-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(\frac{\partial S(\boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-mathbf-x-mathbf-x-boldsymbol-beta-mathbf-x-mathbf-y"><p style="text-align:center;"><span class="math notranslate nohighlight">\(\Rightarrow \mathbf{X}'\mathbf{X}\boldsymbol{\beta} = \mathbf{X}'\mathbf{y}\)</span></p></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-boxed-hat-boldsymbol-beta-mathbf-x-mathbf-x-1-mathbf-x-mathbf-y"><p style="text-align:center;"><span class="math notranslate nohighlight">\(\Rightarrow \boxed{\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}}\)</span></p></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicacion-forma-matricial">4.1 Explicación forma matricial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-matricial">4.2 Regresión lineal matricial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-con-statsmodel">4.3 Comparación con STATSMODEL</a></li>
 </ul>
   </nav></div>
 

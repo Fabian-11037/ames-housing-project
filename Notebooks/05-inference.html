@@ -182,8 +182,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0.1 Instalación de módulos</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="00-instructions.html">0. Preparación</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-data-cleaning.html">2. Descripción y limpieza del dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-eda.html">3. Análisis Exploratorio de Datos</a></li>
@@ -192,7 +191,7 @@
 <li class="toctree-l1"><a class="reference internal" href="06-diagnostics.html">6. Diagnóstico de supuestos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-robust-methods.html">7. Remedios y métodos robustos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-validation.html">8. Validación y selección de modelo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">Ground Living area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-interpretation.html">9. Interpretación de Resultados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10-conclusions.html">10. Respuesta a preguntas Iniciales</a></li>
 </ul>
 
@@ -389,22 +388,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-grados-de-libertad">5.1 Calculo de grados de libertad</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df-model-m-1-k"><p style="text-align:center;"><span class="math notranslate nohighlight">\(Df_{Model} = m - 1 = k\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df-residuals-n-m-n-k-1"><p style="text-align:center;"><span class="math notranslate nohighlight">\(Df_{Residuals} = n - m = n - (k + 1)\)</span></p></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-error-estandar">5.2 Calculo de error estandar</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-sum-frac-hat-y-y-2-df-residuals"><p style="text-align:center;"><span class="math notranslate nohighlight">\(MSE = \sum \frac{(\hat{y} - y)^2}{df_{residuals}}\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cov-x-t-x"><p style="text-align:center;"><span class="math notranslate nohighlight">\(COV = (X^T X)\)</span></p></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testeo-de-hipotesis-y-p-valor">5.3 Testeo de hipótesis y p-valor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-b-i-0-forall-i-0-h-1-b-i-ne-0-forall-i-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(H_0: B_i = 0, \forall i &gt; 0\)</span></p> <p style="text-align:center;"><span class="math notranslate nohighlight">\(H_1: B_i \ne 0, \forall i &gt; 0\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-i-frac-b-i-se-i-forall-i-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(t_i = \frac{B_i}{se_i}, \forall i &gt; 0\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-i-2-p-t-t-i-forall-i-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(p_i = 2 * P(t&gt;|t_i|), \forall i &gt; 0\)</span></p></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-grados-de-libertad">5.1 Calculo de grados de libertad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-error-estandar">5.2 Calculo de error estandar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testeo-de-hipotesis-y-p-valor">5.3 Testeo de hipótesis y p-valor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-coeficientes">5.4 Tabla de coeficientes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-variables-significativas">5.5 Analisis de variables significativas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-significantes">Variables Significantes</a></li>
@@ -425,6 +411,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="inferencia-y-grados-de-libertad">
 <h1>5. Inferencia y grados de libertad<a class="headerlink" href="#inferencia-y-grados-de-libertad" title="Link to this heading">#</a></h1>
+<p>Importamos los datos y módulos a usar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -483,9 +470,7 @@ document.write(`
 <section id="calculo-de-grados-de-libertad">
 <h2>5.1 Calculo de grados de libertad<a class="headerlink" href="#calculo-de-grados-de-libertad" title="Link to this heading">#</a></h2>
 <p>Los grados de libertad de modelo corresponden a número de coeficientes B estimados, asociados a variables regresoras. Es decir, es calculado como:</p>
-<section id="df-model-m-1-k">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(Df_{Model} = m - 1 = k\)</span></p><a class="headerlink" href="#df-model-m-1-k" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
+<p style="text-align:center;">$Df_{Model} = m - 1 = k$</p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Df_Model</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -512,10 +497,7 @@ document.write(`
 </div>
 </div>
 <p>Por su parte, los grados de libertad de los residuos corresponden al número de observaciones n menos el total de coeficientes estimados:</p>
-</section>
-<section id="df-residuals-n-m-n-k-1">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(Df_{Residuals} = n - m = n - (k + 1)\)</span></p><a class="headerlink" href="#df-residuals-n-m-n-k-1" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
+<p style="text-align:center;">$Df_{Residuals} = n - m = n - (k + 1)$</p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Df_Residuals</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 
@@ -573,13 +555,10 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="calculo-de-error-estandar">
 <h2>5.2 Calculo de error estandar<a class="headerlink" href="#calculo-de-error-estandar" title="Link to this heading">#</a></h2>
 <p>Para calcular el error estándar de cada coeficiente, primero calculamos el error medio cuadrático, usando la expresión:</p>
-<section id="mse-sum-frac-hat-y-y-2-df-residuals">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(MSE = \sum \frac{(\hat{y} - y)^2}{df_{residuals}}\)</span></p><a class="headerlink" href="#mse-sum-frac-hat-y-y-2-df-residuals" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
+<p style="text-align:center;">$MSE = \sum \frac{(\hat{y} - y)^2}{df_{residuals}}$</p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y_pred</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span>
 
@@ -596,9 +575,7 @@ document.write(`
 </div>
 </div>
 <p>Luego, se obtiene la matriz de covarianza de los estimadores calculada como:</p>
-</section>
-<section id="cov-x-t-x">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(COV = (X^T X)\)</span></p><a class="headerlink" href="#cov-x-t-x" title="Link to this heading">#</a></h3>
+<p style="text-align:center;">$COV = (X^T X)$</p>
 <p>De esta matriz, nos interesa los valores que están en la diagonal central, los cuales corresponderán a la covarianza de los estimadores, incluyendo <span class="math notranslate nohighlight">\(B_0\)</span>.</p>
 <p>Además, dado que para calcular el error estandar es necesario dividir el error cuadratico medio sobre los valores de la covarianza, es necesario sacar su inversa. De esta manera calculamos el error estandar como:</p>
 <div class="cell docutils container">
@@ -622,22 +599,15 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="testeo-de-hipotesis-y-p-valor">
 <h2>5.3 Testeo de hipótesis y p-valor<a class="headerlink" href="#testeo-de-hipotesis-y-p-valor" title="Link to this heading">#</a></h2>
 <p>Con el error estándar podemos obtener un estadístico t, que nos ayude a validar la hipotesis de significancia del modelo, donde:</p>
-<section id="h-0-b-i-0-forall-i-0-h-1-b-i-ne-0-forall-i-0">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(H_0: B_i = 0, \forall i &gt; 0\)</span></p> <p style="text-align:center;"><span class="math notranslate nohighlight">\(H_1: B_i \ne 0, \forall i &gt; 0\)</span></p><a class="headerlink" href="#h-0-b-i-0-forall-i-0-h-1-b-i-ne-0-forall-i-0" title="Link to this heading">#</a></h3>
+<p style="text-align:center;">$H_0: B_i = 0, \forall i > 0$</p> <p style="text-align:center;">$H_1: B_i \ne 0, \forall i > 0$</p>
 <p>Se entiende que si no se puede rechazar la hipotesis nula que el coeficiente asociado a un atributo <span class="math notranslate nohighlight">\(X_i\)</span> es igual a 0, entonces ese atributo no tiene una significancia verdadera en el modelo, por lo cual puede ser descartado. El estadistico t asociado será igual a:</p>
-</section>
-<section id="t-i-frac-b-i-se-i-forall-i-0">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(t_i = \frac{B_i}{se_i}, \forall i &gt; 0\)</span></p><a class="headerlink" href="#t-i-frac-b-i-se-i-forall-i-0" title="Link to this heading">#</a></h3>
+<p style="text-align:center;">$t_i = \frac{B_i}{se_i}, \forall i > 0$</p>
 <p>Y el p valor será igual a:</p>
-</section>
-<section id="p-i-2-p-t-t-i-forall-i-0">
-<h3><p style="text-align:center;"><span class="math notranslate nohighlight">\(p_i = 2 * P(t&gt;|t_i|), \forall i &gt; 0\)</span></p><a class="headerlink" href="#p-i-2-p-t-t-i-forall-i-0" title="Link to this heading">#</a></h3>
+<p style="text-align:center;">$p_i = 2 * P(t>|t_i|), \forall i > 0$</p>
 <p>Una hipótesis similar se puede realizar para el intercepto <span class="math notranslate nohighlight">\(B_0\)</span>, donde se evalúa la hipótesis de que el modelo pase por el origen, es decir, <span class="math notranslate nohighlight">\(Y=0\)</span> para <span class="math notranslate nohighlight">\(X = 0\)</span>.</p>
-</section>
 </section>
 <section id="tabla-de-coeficientes">
 <h2>5.4 Tabla de coeficientes<a class="headerlink" href="#tabla-de-coeficientes" title="Link to this heading">#</a></h2>
@@ -661,10 +631,10 @@ document.write(`
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   1154.</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Sun, 09 Nov 2025</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td> 
+  <th>Date:</th>             <td>Mon, 10 Nov 2025</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td> 
 </tr>
 <tr>
-  <th>Time:</th>                 <td>16:54:03</td>     <th>  Log-Likelihood:    </th> <td>  1554.0</td>
+  <th>Time:</th>                 <td>00:59:52</td>     <th>  Log-Likelihood:    </th> <td>  1554.0</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>  2796</td>      <th>  AIC:               </th> <td>  -3078.</td>
@@ -890,7 +860,6 @@ document.write(`
 <hr class="docutils" />
 <section id="variables-descartadas">
 <h3>Variables descartadas<a class="headerlink" href="#variables-descartadas" title="Link to this heading">#</a></h3>
-<p>Y para los atributos descartados:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omitted_regressors</span>
@@ -1007,10 +976,10 @@ document.write(`
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   1345.</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Sun, 09 Nov 2025</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td> 
+  <th>Date:</th>             <td>Mon, 10 Nov 2025</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td> 
 </tr>
 <tr>
-  <th>Time:</th>                 <td>17:06:59</td>     <th>  Log-Likelihood:    </th> <td>  1551.6</td>
+  <th>Time:</th>                 <td>00:59:52</td>     <th>  Log-Likelihood:    </th> <td>  1551.6</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>  2796</td>      <th>  AIC:               </th> <td>  -3077.</td>
@@ -1176,22 +1145,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-grados-de-libertad">5.1 Calculo de grados de libertad</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df-model-m-1-k"><p style="text-align:center;"><span class="math notranslate nohighlight">\(Df_{Model} = m - 1 = k\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df-residuals-n-m-n-k-1"><p style="text-align:center;"><span class="math notranslate nohighlight">\(Df_{Residuals} = n - m = n - (k + 1)\)</span></p></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-error-estandar">5.2 Calculo de error estandar</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-sum-frac-hat-y-y-2-df-residuals"><p style="text-align:center;"><span class="math notranslate nohighlight">\(MSE = \sum \frac{(\hat{y} - y)^2}{df_{residuals}}\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cov-x-t-x"><p style="text-align:center;"><span class="math notranslate nohighlight">\(COV = (X^T X)\)</span></p></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testeo-de-hipotesis-y-p-valor">5.3 Testeo de hipótesis y p-valor</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-0-b-i-0-forall-i-0-h-1-b-i-ne-0-forall-i-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(H_0: B_i = 0, \forall i &gt; 0\)</span></p> <p style="text-align:center;"><span class="math notranslate nohighlight">\(H_1: B_i \ne 0, \forall i &gt; 0\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-i-frac-b-i-se-i-forall-i-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(t_i = \frac{B_i}{se_i}, \forall i &gt; 0\)</span></p></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-i-2-p-t-t-i-forall-i-0"><p style="text-align:center;"><span class="math notranslate nohighlight">\(p_i = 2 * P(t&gt;|t_i|), \forall i &gt; 0\)</span></p></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-grados-de-libertad">5.1 Calculo de grados de libertad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-error-estandar">5.2 Calculo de error estandar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testeo-de-hipotesis-y-p-valor">5.3 Testeo de hipótesis y p-valor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-coeficientes">5.4 Tabla de coeficientes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-variables-significativas">5.5 Analisis de variables significativas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-significantes">Variables Significantes</a></li>
