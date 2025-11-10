@@ -1,4 +1,4 @@
-# Project_Modelos_Lineales
+# Ames Housing
 
 ## Instrucciones para compilar el Jupyter-book
 ### Paso 1: Instalación de Jupyter-book y librerías a utilizar
