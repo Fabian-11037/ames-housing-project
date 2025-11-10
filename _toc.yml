@@ -1,5 +1,5 @@
 format: jb-book
-root: intro.md
+root: README.md
 chapters:
   - file: Notebooks/00-instructions
   - file: Notebooks/01-introduction
