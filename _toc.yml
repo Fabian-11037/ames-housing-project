@@ -1,0 +1,14 @@
+format: jb-book
+root: intro.md
+chapters:
+  - file: Notebooks/00-instructions
+  - file: Notebooks/01-introduction
+  - file: Notebooks/02-data-cleaning
+  - file: Notebooks/03-eda
+  - file: Notebooks/04-ols-matrix
+  - file: Notebooks/05-inference
+  - file: Notebooks/06-diagnostics
+  - file: Notebooks/07-robust-methods
+  - file: Notebooks/08-validation
+  - file: Notebooks/09-interpretation
+  - file: Notebooks/10-conclusions
